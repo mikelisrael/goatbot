@@ -1,0 +1,21 @@
+.alert {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  z-index: 9999;
+  transition: 0.1s ease-in-out;
+}
+
+.alert-danger {
+  color: #721c24;
+  background: #f7a9af;
+}
+
+.alert-success {
+  color: #0e3617;
+  background: #54eb77;
+}

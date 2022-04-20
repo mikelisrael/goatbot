@@ -1,0 +1,63 @@
+.account-dropdown {
+  --height: 50px;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  height: var(--height);
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+  user-select: none;
+  border-radius: var(--border-radius);
+  z-index: 10;
+}
+
+.account-dropdown .account-dropdown-btn {
+  border-radius: var(--border-radius);
+  padding: 15px 20px;
+  height: var(--height);
+  box-shadow: var(--box-shadow);
+  font-weight: 500;
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-transform: capitalize;
+  overflow: hidden;
+}
+
+.account-dropdown .account-dropdown-content {
+  border-radius: var(--border-radius);
+  position: absolute;
+  top: calc(var(--height) + 0.5rem);
+  padding: 15px 15px;
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+  box-shadow: var(--box-shadow);
+  left: 0;
+  width: 100%;
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.account-dropdown .account-dropdown-content .account-dropdown-item {
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: capitalize;
+}
+
+.account-dropdown .account-dropdown-content .account-dropdown-item:hover {
+  background-color: var(--second-bg);
+  color: var(--txt-color);
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+.account-dropdown-btn span i {
+  font-size: 1.5rem;
+}

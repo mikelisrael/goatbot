@@ -1,0 +1,26 @@
+.layout {
+  color: var(--txt-color);
+}
+
+.layout__content {
+  padding-left: var(--sidebar-width);
+  background-color: var(--second-bg);
+  min-height: 100vh;
+}
+
+.layout__content-main {
+  padding: 10px 30px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 532px) {
+  .layout__content-main {
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .layout__content {
+    padding-left: 70px;
+  }
+}

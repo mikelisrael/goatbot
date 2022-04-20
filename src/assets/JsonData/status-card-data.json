@@ -1,0 +1,22 @@
+[
+    {
+        "icon": "bx bx-shopping-bag",
+        "count": "10",
+        "title": "Total Shoes"
+    },
+    {
+        "icon": "bx bx-dollar-circle",
+        "count": "$2,001",
+        "title": "Total Market Value"
+    },
+    {
+        "icon": "bx bxs-user-account",
+        "count": "19",
+        "title": "Total Accounts"
+    },
+    {
+        "icon": "bx bx-list-ol",
+        "count": "14",
+        "title": "Outstanding offers"
+    }
+]

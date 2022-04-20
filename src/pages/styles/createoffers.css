@@ -1,0 +1,153 @@
+.create-offers {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .create-offers {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.create-offers-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.create-offers form {
+  padding: 15px 0px;
+  border-radius: var(--border-radius);
+}
+
+.form-checkboxes {
+  display: flex;
+  text-transform: capitalize;
+  flex-wrap: wrap;
+}
+
+.create-offers input[type="radio"],
+.create-offers input[type="checkbox"] {
+  display: block;
+}
+
+.create-offers input[type="radio"],
+.create-offers input[type="checkbox"] {
+  height: 0;
+  width: 0;
+}
+
+.create-offers input[type="radio"] + label,
+.create-offers input[type="checkbox"] + label {
+  position: relative;
+  display: flex;
+  margin-right: 1.5rem;
+  align-items: center;
+  color: var(--txt-color-light);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+  text-transform: capitalize;
+}
+
+.create-offers input[type="radio"] + label {
+  margin-top: 1rem;
+}
+
+.create-offers input[type="radio"] + label > span,
+.create-offers input[type="checkbox"] + label > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1em;
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border: 2px solid var(--txt-color-light);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.create-offers input[type="radio"] + label:hover,
+input[type="radio"]:focus + label,
+.create-offers input[type="checkbox"] + label:hover,
+input[type="checkbox"]:focus + label {
+  color: var(--txt-color);
+}
+
+.create-offers input[type="radio"] + label:hover > span,
+input[type="radio"]:focus + label > span,
+.create-offers input[type="checkbox"] + label:hover > span,
+input[type="checkbox"]:focus + label > span {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.create-offers input[type="radio"]:checked + label,
+.create-offers input[type="checkbox"]:checked + label {
+  color: var(--txt-color);
+}
+
+.create-offers input[type="radio"]:checked + label > span,
+.create-offers input[type="checkbox"]:checked + label > span {
+  border: 0.5em solid var(--main-color);
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.create-offers input[type="radio"]:checked + label > span:before,
+.create-offers input[type="checkbox"]:checked + label > span:before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0.2em;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards;
+}
+
+@keyframes shrink-bounce {
+  0% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes checkbox-check {
+  0% {
+    width: 0;
+    height: 0;
+    border-color: var(--second-bg);
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  33% {
+    width: 0.2em;
+    height: 0;
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  100% {
+    width: 0.2em;
+    height: 0.5em;
+    border-color: var(--second-bg);
+    transform: translate3d(0, -0.5em, 0) rotate(45deg);
+  }
+}
+
+.details-input-form {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.create-offers .form-control {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.create-offers .form-control input {
+  height: 100%;
+  width: 100%;
+}

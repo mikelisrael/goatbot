@@ -1,0 +1,120 @@
+.accounts {
+  position: relative;
+}
+
+.accounts form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  /* background-color: red; */
+}
+
+.accounts table td {
+  text-transform: none;
+}
+
+.delete-btn {
+  color: hsl(360, 71%, 66%);
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: hsl(360, 67%, 44%);
+}
+
+.form-control {
+  flex-grow: 1;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.form-control input {
+  height: 100%;
+  width: 50%;
+  padding: 15px 10px;
+  border-radius: var(--border-radius);
+}
+
+.form-control button {
+  outline: none;
+  border: none;
+  color: var(--txt-white);
+  background-color: var(--main-color);
+  padding-inline: 30px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  padding: 15px 50px;
+  height: 100%;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .form-control {
+    flex-wrap: wrap;
+  }
+
+  .form-control input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .form-control {
+    width: 90%;
+  }
+}
+
+.accounts input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.accounts label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 90px;
+  height: 40px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.accounts label:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.accounts input:checked + label {
+  background: var(--main-color);
+}
+
+.accounts input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.accounts label:active:after {
+  width: 130px;
+}

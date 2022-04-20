@@ -1,0 +1,37 @@
+[
+  {
+    "display_name": "Home",
+    "route": "/",
+    "icon": "bx bx-home"
+  },
+  {
+    "display_name": "Create Offers",
+    "route": "/create-offers",
+    "icon": "bx bxs-offer"
+  },
+  {
+    "display_name": "Order History",
+    "route": "/history",
+    "icon": "bx bx-history"
+  },
+  {
+    "display_name": "Outstanding Offers",
+    "route": "/outstanding-offers",
+    "icon": "bx bx-list-ol"
+  },
+  {
+    "display_name": "Current Storage",
+    "route": "/current-storage",
+    "icon": "bx bxs-data"
+  },
+  {
+    "display_name": "Accounts",
+    "route": "/accounts",
+    "icon": "bx bxs-user-account"
+  },
+  {
+    "display_name": "settings",
+    "route": "/settings",
+    "icon": "bx bx-cog"
+  }
+]
