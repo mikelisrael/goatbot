@@ -23,7 +23,7 @@
   --second-color-blue: #62b4ff;
 
   --main-color-red: #fb0b12;
-  --second-color-red: #ff4a6b;
+  --second-color-red: #ff1c45;
 
   --main-color-cyan: #10d4d2;
   --second-color-cyan: #2ae9e6;
@@ -51,7 +51,7 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 a {
@@ -77,11 +77,11 @@ ul {
 input {
   border: 2px solid transparent;
   outline: 0;
-  padding: 0.25rem;
-  padding-left: 1rem;
+  padding: 15px 10px;
   font-size: 1rem;
   color: var(--txt-color);
   background-color: var(--main-bg);
+  border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
 

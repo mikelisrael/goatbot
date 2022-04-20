@@ -47,7 +47,6 @@ const CreateOffers = () => {
     ) {
       displayAlert(true, "Fill the form", "danger");
     } else {
-      console.log(itemSelected);
       setItemSelected({ price: "", size: "" });
       displayAlert(true, "offer created", "success");
     }

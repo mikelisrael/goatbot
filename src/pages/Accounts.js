@@ -28,7 +28,7 @@ const Accounts = () => {
   const renderBody = (item, index) => (
     <tr key={uuidv4()}>
       <td>{index + 1}</td>
-      <td>{item.email}</td>
+      <td className="table-emails">{item.email}</td>
       <td className="account-password">
         {showPassword ? item.phone : "●●●●●●●●●"}
       </td>
@@ -133,7 +133,6 @@ const Accounts = () => {
           <div className="card">
             <div className="card__body">
               <Table
-                limit="10"
                 headData={customerTableHead}
                 renderHead={(item, index) => renderHead(item, index)}
                 bodyData={accountList}

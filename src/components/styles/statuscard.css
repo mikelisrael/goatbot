@@ -24,14 +24,13 @@
 
 .status-card__info {
   flex-grow: 1;
-  /* background-color: red; */
   text-align: left;
   z-index: 1;
   text-transform: capitalize;
 }
 
 .status-card__info h4 {
-  font-size: 2rem;
+  font-size: 1.7rem;
   margin-bottom: 5px;
 }
 

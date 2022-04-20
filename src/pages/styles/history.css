@@ -1,0 +1,13 @@
+.history form {
+  display: grid;
+  margin-bottom: 1.5rem;
+  gap: 0.7rem;
+  grid-template-columns: 1fr 1fr 0.3fr;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .history form {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

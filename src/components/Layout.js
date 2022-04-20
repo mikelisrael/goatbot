@@ -7,6 +7,7 @@ import Topnav from "../components/Topnav";
 import Accounts from "../pages/Accounts";
 import { useSelector, useDispatch } from "react-redux";
 import ThemeAction from "../redux/actions/ThemeAction";
+import History from "../pages/History";
 import "./styles/layout.css";
 
 const Layout = () => {
@@ -14,13 +15,13 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      const themeClass = localStorage.getItem("themeMode", "theme-mode-light");
+    const themeClass = localStorage.getItem("themeMode", "theme-mode-light");
 
-      const colorClass = localStorage.getItem("colorMode", "theme-mode-light");
+    const colorClass = localStorage.getItem("colorMode", "theme-mode-light");
 
-      dispatch(ThemeAction.setMode(themeClass));
+    dispatch(ThemeAction.setMode(themeClass));
 
-      dispatch(ThemeAction.setColor(colorClass));
+    dispatch(ThemeAction.setColor(colorClass));
   }, [dispatch]);
 
   return (
@@ -33,6 +34,7 @@ const Layout = () => {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/create-offers" element={<CreateOffers />} />
+              <Route path="/history" element={<History />} />
               <Route path="/accounts" element={<Accounts />} />
             </Routes>
           </div>

@@ -3,8 +3,8 @@ import "./styles/table.css";
 
 const Table = ({ headData, renderHead, bodyData, renderBody, limit }) => {
   // pagination the real deal
-  // const initialData =
-  //   limit && bodyData ? bodyData.slice(0, Number(limit)) : bodyData;
+  const initialData =
+    limit && bodyData ? bodyData.slice(0, Number(limit)) : bodyData;
   // const [dataShow, setDataShow] = useState(initialData);
 
   // let pages = 1;
@@ -37,7 +37,7 @@ const Table = ({ headData, renderHead, bodyData, renderBody, limit }) => {
         )}
         {bodyData && renderBody && (
           <tbody>
-            {bodyData.map((item, index) => renderBody(item, index))}
+            {initialData.map((item, index) => renderBody(item, index))}
           </tbody>
         )}
       </table>

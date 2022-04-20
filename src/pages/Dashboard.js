@@ -4,11 +4,7 @@ import Statuscard from "../components/StatusCard";
 import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import AreaPlot from "../components/AreaPlot";
-import {
-  topSneakers,
-  latestOrders,
-  orderStatus,
-} from "../assets/JsonData/tableData";
+import { topSneakers, latestOrders } from "../assets/JsonData/tableData";
 import Badge from "../components/Badge";
 
 const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
@@ -25,12 +21,14 @@ const renderOrderHead = (item, index) => <th key={index}>{item}</th>;
 
 const renderOrderBody = (item, index) => (
   <tr key={index}>
-    <td>{item.id}</td>
-    <td>{item.user}</td>
-    <td>{item.price}</td>
     <td>{item.date}</td>
+    <td>{item.user}</td>
+    <td>{item.id}</td>
+    <td>{item.size}</td>
+    <td>{item.price}</td>
+    <td className="table-emails">{item.email}</td>
     <td>
-      <Badge type={orderStatus[item.status]} content={item.status} />
+      <Badge type={item.status} />
     </td>
   </tr>
 );
@@ -75,6 +73,7 @@ const Dashboard = () => {
             </div>
             <div className="card__body">
               <Table
+                limit="5"
                 headData={latestOrders.header}
                 renderHead={(item, index) => renderOrderHead(item, index)}
                 bodyData={latestOrders.body}
@@ -82,7 +81,7 @@ const Dashboard = () => {
               />
             </div>
             <div className="card__footer">
-              <Link to="/">view all</Link>
+              <Link to="/history">view all</Link>
             </div>
           </div>
         </section>

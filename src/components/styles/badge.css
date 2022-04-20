@@ -1,21 +1,15 @@
 .badge {
-  padding: 0px 11px;
-  color: var(--txt-white);
+  padding: 0px auto;
   border-radius: 10px;
+  /* margin: 0 auto; */
+  font-size: 1.5rem;
+  /* text-align: center; */
 }
 
-.badge-danger {
-  background-color: var(--main-color-red);
+.badge-no {
+ color: var(--main-color-red);
 }
 
-.badge-success {
-  background-color: var(--main-color-green);
-}
-
-.badge-primary {
-  background-color: var(--main-color-blue);
-}
-
-.badge-warning {
-  background-color: var(--main-color-orange);
+.badge-yes {
+ color: rgb(5, 177, 5);
 }
