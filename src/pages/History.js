@@ -53,7 +53,7 @@ const History = () => {
           <input id="storage" type="checkbox" name="quantity" />
           <label htmlFor="storage">
             <span></span>
-            in storage?
+            In storage?
           </label>
         </div>
       </form>
