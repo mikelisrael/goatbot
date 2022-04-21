@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import EmptyData from "./EmptyData";
 import "./styles/table.css";
 
 const Table = ({ headData, renderHead, bodyData, renderBody, limit }) => {
@@ -41,6 +42,9 @@ const Table = ({ headData, renderHead, bodyData, renderBody, limit }) => {
           </tbody>
         )}
       </table>
+
+      {initialData.length === 0 && <EmptyData />}
+
       {/* {pages > 1 ? (
         <div className="table__pagination">
           {range.map((item, index) => (

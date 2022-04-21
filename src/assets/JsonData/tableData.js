@@ -35,10 +35,18 @@ export const topSneakers = {
 };
 
 export const latestOrders = {
-  header: ["date/time", "shoe name", "sku", "size", "price", "account", "storage"],
+  header: [
+    "date/time",
+    "shoe name",
+    "sku",
+    "size",
+    "price",
+    "account",
+    "storage",
+  ],
   body: [
     {
-      id: "#OD1711",
+      id: "#OD1211",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
@@ -74,7 +82,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD1712",
+      id: "#OD1715",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -83,7 +91,43 @@ export const latestOrders = {
       status: true,
     },
     {
+      id: "#OD1215",
+      user: "frank iva",
+      date: "1 Jun 2021",
+      size: 13,
+      email: "cacum6@scribd.com",
+      price: "$400",
+      status: false,
+    },
+    {
       id: "#OD1713",
+      user: "anthony baker",
+      date: "27 Jun 2021",
+      size: 13,
+      email: "ahaig7@live.com",
+      price: "$200",
+      status: false,
+    },
+    {
+      id: "#OD1711",
+      user: "anthony baker",
+      date: "27 Jun 2021",
+      size: 13,
+      email: "ahaig7@live.com",
+      price: "$200",
+      status: false,
+    },
+    {
+      id: "#OD1715",
+      user: "anthony baker",
+      date: "27 Jun 2021",
+      size: 13,
+      email: "ahaig7@live.com",
+      price: "$200",
+      status: false,
+    },
+    {
+      id: "#OD1712",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,

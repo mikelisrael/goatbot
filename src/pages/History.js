@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Badge from "../components/Badge";
 import Table from "../components/Table";
 import { latestOrders } from "../assets/JsonData/tableData";
@@ -8,10 +8,75 @@ import "./styles/history.css";
 
 const History = () => {
   const [selected, setSelected] = useState("");
+  const [orderHistory, setOrderHistory] = useState(latestOrders.body);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [inStorage, setInStorage] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  const handleChange = useCallback(() => {
+    let newHistory;
+
+    // if none
+    if (!searchTerm && !selected && !inStorage) {
+      setOrderHistory(latestOrders.body);
+    }
+
+    // if searchterm all 3
+    if (searchTerm) {
+      newHistory = latestOrders.body.filter((val) =>
+        val.id.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (selected) {
+        newHistory = latestOrders.body.filter(
+          (val) =>
+            val.id.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            val.email === selected
+        );
+      }
+      if (inStorage) {
+        newHistory = latestOrders.body.filter(
+          (val) =>
+            val.id.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            val.email === selected &&
+            val.status === inStorage
+        );
+      }
+      setOrderHistory(newHistory);
+    }
+
+    // if only email, then searchterm
+    if (selected) {
+      newHistory = latestOrders.body.filter((val) => val.email === selected);
+      if (searchTerm) {
+        newHistory = orderHistory.filter(
+          (val) =>
+            val.id.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            val.email === selected
+        );
+      }
+      setOrderHistory(newHistory);
+    }
+
+    // if only in storage
+    if (inStorage) {
+      newHistory = orderHistory.filter((val) => val.status === inStorage);
+      if (searchTerm) {
+        newHistory = orderHistory.filter(
+          (val) =>
+            val.id.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            val.status === inStorage
+        );
+      }
+      setOrderHistory(newHistory);
+    }
+  }, [inStorage, searchTerm, selected, orderHistory]);
+
+  useEffect(() => {
+    handleChange();
+  }, [selected, inStorage, searchTerm, handleChange]);
 
   const tableHeader = [
     "s/n",
@@ -45,13 +110,25 @@ const History = () => {
     <div className="history">
       <h2 className="page-header">Order history</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="search sku" name="sku" />
+        <input
+          type="text"
+          placeholder="search sku"
+          name="sku"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
 
         <AccountsDropdown selected={selected} setSelected={setSelected} />
 
         <div>
-          <input id="storage" type="checkbox" name="quantity" />
-          <label htmlFor="storage">
+          <input id="storage" type="checkbox" />
+          <label
+            htmlFor="storage"
+            onClick={() => {
+              setInStorage(!inStorage);
+            }}
+          >
             <span></span>
             In storage?
           </label>
@@ -65,7 +142,7 @@ const History = () => {
               <Table
                 headData={tableHeader}
                 renderHead={(item, index) => renderOrderHead(item, index)}
-                bodyData={latestOrders.body}
+                bodyData={orderHistory}
                 renderBody={(item, index) => renderOrderBody(item, index)}
               />
             </div>

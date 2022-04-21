@@ -21,21 +21,23 @@ const AccountsDropdown = ({ selected, setSelected }) => {
         </div>
         {isActive && (
           <div className="account-dropdown-content">
-            {customersList.map((customer) => {
-              const { email } = customer;
-              return (
-                <p
-                  className="account-dropdown-item"
-                  onClick={() => {
-                    setSelected(email);
-                    setIsActive(false);
-                  }}
-                  key={uuidv4()}
-                >
-                  {email}
-                </p>
-              );
-            })}
+            {customersList
+              .sort((a, b) => a.email.localeCompare(b.email))
+              .map((customer) => {
+                const { email } = customer;
+                return (
+                  <p
+                    className="account-dropdown-item"
+                    onClick={() => {
+                      setSelected(email);
+                      setIsActive(false);
+                    }}
+                    key={uuidv4()}
+                  >
+                    {email}
+                  </p>
+                );
+              })}
           </div>
         )}
       </div>
