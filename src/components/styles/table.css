@@ -1,7 +1,5 @@
 .table-wrapper {
   overflow-y: auto;
-  /* max-height: 100vh;
-  overflow-y: scroll; */
 }
 
 table {
@@ -18,11 +16,19 @@ tr {
   text-align: left;
 }
 
+th {
+  text-transform: capitalize;
+}
+
 th,
 td {
-  text-transform: capitalize;
   padding: 10px;
+  text-align: center;
 }
+
+/* td:last-of-type {
+  text-align: center;
+} */
 
 tbody > tr:hover {
   background-color: var(--second-bg);

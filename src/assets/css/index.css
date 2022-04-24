@@ -181,3 +181,7 @@ input:focus {
 ::-webkit-scrollbar-thumb:hover {
   background-color: grey;
 }
+
+.shoe-name{
+  text-transform: capitalize;
+}

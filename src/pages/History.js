@@ -95,11 +95,11 @@ const History = () => {
     <tr key={uuidv4()}>
       <td>{index + 1}</td>
       <td>{item.date}</td>
-      <td>{item.user}</td>
+      <td className="shoe-name">{item.user}</td>
       <td>{item.id}</td>
       <td>{item.size}</td>
       <td>{item.price}</td>
-      <td className="table-emails">{item.email}</td>
+      <td>{item.email}</td>
       <td>
         <Badge type={item.status} />
       </td>

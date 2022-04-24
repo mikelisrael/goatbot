@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  text-transform: capitalize;
+  /*text-transform: lowercase; check here later*/
   overflow: hidden;
 }
 
@@ -46,7 +46,7 @@
   padding: 5px;
   cursor: pointer;
   transition: 0.3s;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .account-dropdown .account-dropdown-content .account-dropdown-item:hover {

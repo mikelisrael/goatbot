@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
+  const [user, setUser] = useState({ name: "user", pass: "test" });
   const [showAlert, setShowAlert] = useState({
     show: false,
     msg: "",
@@ -13,7 +14,7 @@ const AppProvider = ({ children }) => {
     setShowAlert({ show, msg, type });
 
   return (
-    <AppContext.Provider value={{ showAlert, displayAlert }}>
+    <AppContext.Provider value={{ showAlert, displayAlert, user, setUser }}>
       {children}
     </AppContext.Provider>
   );

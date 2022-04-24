@@ -12,10 +12,6 @@
   /* background-color: red; */
 }
 
-.table-emails {
-  text-transform: none;
-}
-
 .delete-btn {
   color: hsl(360, 71%, 66%);
   cursor: pointer;
@@ -27,7 +23,7 @@
 
 .form-control {
   flex-grow: 1;
-  width: 50%; 
+  width: 50%;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -38,17 +34,21 @@
   width: 50%;
 }
 
-.form-control button {
+.form-control button,
+.modal button {
   outline: none;
   border: none;
   color: var(--txt-white);
   background-color: var(--main-color);
-  padding-inline: 30px;
   border-radius: var(--border-radius);
   font-weight: 600;
   padding: 15px 50px;
   height: 100%;
   letter-spacing: 1px;
+}
+
+.form-control button:hover {
+  background-color: var(--second-color);
 }
 
 @media (max-width: 768px) {
@@ -114,4 +114,80 @@
 
 .accounts label:active:after {
   width: 130px;
+}
+
+.modal {
+  width: 250px;
+  height: 200px;
+  box-shadow: var(--box-shadow);
+  display: grid;
+  place-items: center;
+  position: absolute;
+  right: 5%;
+  top: 1%;
+  padding: 20px;
+  padding-bottom: 40px;
+  background-color: var(--main-bg);
+  align-items: center;
+  transform: scale(0);
+  transition: transform 0.2s;
+  border-radius: var(--border-radius);
+}
+
+.modal form {
+  display: grid;
+  place-items: center;
+  margin-bottom: 0;
+  gap: 0;
+}
+
+.modal input {
+  margin-top: 10px;
+  margin-inline: 0;
+  width: 100%;
+}
+
+.modal i {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.modal i:hover {
+  color: var(--second-color);
+}
+
+.modal button {
+  margin-top: 15px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+}
+
+.modal button:hover {
+  background-color: var(--second-color);
+}
+
+.modal p {
+  width: 100%;
+  text-align: left;
+}
+
+@keyframes blowUpContent {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal.show {
+  transform: scale(1);
+  animation: 0.5s blowUpContent;
 }

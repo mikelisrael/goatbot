@@ -4,36 +4,41 @@ import Statuscard from "../components/StatusCard";
 import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import AreaPlot from "../components/AreaPlot";
-import { topSneakers, latestOrders } from "../assets/JsonData/tableData";
+import {
+  latestOrders,
+  orderHistoryHead,
+  outstandingOffersHead,
+} from "../assets/JsonData/tableData";
 import Badge from "../components/Badge";
 
-const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
-
-const renderCustomBody = (item, index) => (
-  <tr key={index}>
-    <td>{item.username}</td>
-    <td>{item.order}</td>
-    <td>{item.price}</td>
-  </tr>
-);
-
-const renderOrderHead = (item, index) => <th key={index}>{item}</th>;
-
-const renderOrderBody = (item, index) => (
-  <tr key={index}>
-    <td>{item.date}</td>
-    <td>{item.user}</td>
-    <td>{item.id}</td>
-    <td>{item.size}</td>
-    <td>{item.price}</td>
-    <td className="table-emails">{item.email}</td>
-    <td>
-      <Badge type={item.status} />
-    </td>
-  </tr>
-);
-
 const Dashboard = () => {
+  const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
+
+  const renderCustomBody = (item, index) => (
+    <tr key={index}>
+      <td className="shoe-name">{item.user}</td>
+      <td>{item.id}</td>
+      <td>{item.size}</td>
+      <td>{item.size}</td>
+    </tr>
+  );
+
+  const renderOrderHead = (item, index) => <th key={index}>{item}</th>;
+
+  const renderOrderBody = (item, index) => (
+    <tr key={index}>
+      <td>{item.date}</td>
+      <td className="shoe-name">{item.user}</td>
+      <td>{item.id}</td>
+      <td>{item.size}</td>
+      <td>{item.price}</td>
+      <td className="table-emails">{item.email}</td>
+      <td>
+        <Badge type={item.status} />
+      </td>
+    </tr>
+  );
+
   return (
     <>
       <h2 className="page-header">Home</h2>
@@ -57,14 +62,15 @@ const Dashboard = () => {
             </div>
             <div className="card__body">
               <Table
-                headData={topSneakers.head}
+                limit="7"
+                headData={outstandingOffersHead}
                 renderHead={(item, index) => renderCustomHeader(item, index)}
-                bodyData={topSneakers.body}
+                bodyData={latestOrders.body}
                 renderBody={(item, index) => renderCustomBody(item, index)}
               />
             </div>
             <div className="card__footer">
-              <Link to="/">View all</Link>
+              <Link to="/outstanding-offers">View all</Link>
             </div>
           </div>
           <div className="card">
@@ -74,7 +80,7 @@ const Dashboard = () => {
             <div className="card__body">
               <Table
                 limit="5"
-                headData={latestOrders.header}
+                headData={orderHistoryHead}
                 renderHead={(item, index) => renderOrderHead(item, index)}
                 bodyData={latestOrders.body}
                 renderBody={(item, index) => renderOrderBody(item, index)}
