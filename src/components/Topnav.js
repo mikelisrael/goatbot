@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef } from "react";
 import Dropdown from "./Dropdown";
 import notifications from "../assets/JsonData/notification.json";
 import { Link } from "react-router-dom";
@@ -17,9 +17,29 @@ const renderNotificationItem = (item, index) => {
 };
 
 const Topnav = () => {
+  const refreshBtnRef = useRef(null);
+
+  const hideShowRefresh = () => {
+    refreshBtnRef.current.classList.add("hide");
+
+    setTimeout(() => {
+      refreshBtnRef.current.classList.remove("hide");
+    }, 10000);
+  };
+
   return (
     <div className="topnav">
       <div className="topnav__right">
+        <div className="topnav__right-item">
+          <div
+            className="refresh-btn"
+            ref={refreshBtnRef}
+            onClick={hideShowRefresh}
+            title="Syns Systems"
+          >
+            <i className="bx bx-refresh"></i>
+          </div>
+        </div>
         <div className="topnav__right-item">
           <Dropdown
             icon="bx bx-bell"
