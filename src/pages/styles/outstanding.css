@@ -1,0 +1,41 @@
+.expand-btn {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.expand-btn:hover {
+  color: var(--second-color);
+}
+
+.sort_filter_div span {
+  vertical-align: middle;
+  /* background: red; */
+  margin-right: 15px;
+}
+
+.sort_filter_div span i {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.sort_filter_div span i:hover {
+  color: var(--second-color);
+}
+
+.card__body.inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.activate-del {
+  color: var(--second-color);
+}
+
+.activated_sel {
+  color: var(--main-color-red);
+  cursor: pointer;
+}
+
+.selected_item {
+  background-color: var(--second-bg);
+}

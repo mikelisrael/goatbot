@@ -7,7 +7,6 @@
   font-size: 0.9rem;
   text-transform: capitalize;
   z-index: 9999;
-  transition: 0.1s ease-in-out;
 }
 
 .alert-danger {

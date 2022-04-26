@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Table from "../components/Table";
 import customersList from "../assets/JsonData/customers-list.json";
-import { FaTrash } from "react-icons/fa/"; //FaRegEye, FaRegEyeSlash,
+import { FaTrash } from "react-icons/fa/";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "../components/Alert";
 import { useGlobalContext } from "../context";
@@ -198,9 +198,9 @@ const Accounts = () => {
           </div>
         </div>
       </div>
-      {showAlert.show && (
-        <Alert {...showAlert} removeAlert={displayAlert} list={accountList} />
-      )}
+        {showAlert.show && (
+          <Alert {...showAlert} removeAlert={displayAlert} list={accountList} />
+        )}
     </div>
   );
 };

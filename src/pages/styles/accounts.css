@@ -9,7 +9,6 @@
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
   gap: 1.5rem;
-  /* background-color: red; */
 }
 
 .delete-btn {
@@ -18,7 +17,7 @@
 }
 
 .delete-btn:hover {
-  color: hsl(360, 67%, 44%);
+  color: var(--main-color-red);
 }
 
 .form-control {

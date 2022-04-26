@@ -46,7 +46,7 @@ export const latestOrders = {
   ],
   body: [
     {
-      id: "#OD1211",
+      id: "#OD1511",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
@@ -55,7 +55,7 @@ export const latestOrders = {
       email: "mjunifer1@buzzfeed.com",
     },
     {
-      id: "#OD1712",
+      id: "#OD1612",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 8,
@@ -64,7 +64,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1713",
+      id: "#OD1313",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 9,
@@ -73,7 +73,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1713",
+      id: "#OD1913",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 7.5,
@@ -82,7 +82,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD1715",
+      id: "#OD20715",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -91,7 +91,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD1215",
+      id: "#OD66215",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -100,7 +100,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1713",
+      id: "#OD193713",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -109,7 +109,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1711",
+      id: "#OD171211",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -118,7 +118,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1715",
+      id: "#OD14015",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -127,7 +127,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1712",
+      id: "#OD88712",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -136,7 +136,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1711",
+      id: "#OD0911",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
@@ -302,7 +302,7 @@ export const latestOrders = {
 
 export const outstandingOffersHead = [
   "shoe name",
-  "sku",
+  "SKU",
   "size",
   "outstanding offers",
 ];
@@ -310,7 +310,7 @@ export const outstandingOffersHead = [
 export const orderHistoryHead = [
   "date/time",
   "shoe name",
-  "sku",
+  "SKU",
   "size",
   "price",
   "account",

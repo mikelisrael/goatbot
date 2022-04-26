@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import notifications from "../assets/JsonData/notification.json";
 import { Link } from "react-router-dom";
-// import userMenu from "../assets/JsonData/user_menus.json";
-// import userImage from "../assets/images/cat.png";
+import { useGlobalContext } from "../context";
+import Alert from "./Alert";
 import ThemeMenu from "./ThemeMenu";
 import "./styles/topnav.css";
 
@@ -18,13 +18,28 @@ const renderNotificationItem = (item, index) => {
 
 const Topnav = () => {
   const refreshBtnRef = useRef(null);
+  const { showAlert, displayAlert } = useGlobalContext();
+
+  const refreshClick = () => {
+    const endTimeout = new Date();
+    endTimeout.setMinutes(endTimeout.getMinutes() + 60);
+    localStorage.setItem("refreshAfter__", endTimeout.toUTCString());
+  };
+
+  const displayRefreshClick = () => {
+    const timed = localStorage.getItem("refreshAfter__");
+    if (!timed) return true;
+    return new Date() > new Date(timed);
+  };
+
+  useEffect(() => {
+    displayRefreshClick() && refreshBtnRef.current.classList.remove("hide");
+  }, []);
 
   const hideShowRefresh = () => {
     refreshBtnRef.current.classList.add("hide");
-
-    setTimeout(() => {
-      refreshBtnRef.current.classList.remove("hide");
-    }, 10000);
+    displayAlert(true, "syncing systems", "success");
+    refreshClick();
   };
 
   return (
@@ -32,7 +47,7 @@ const Topnav = () => {
       <div className="topnav__right">
         <div className="topnav__right-item">
           <div
-            className="refresh-btn"
+            className="refresh-btn hide"
             ref={refreshBtnRef}
             onClick={hideShowRefresh}
             title="Syns Systems"
@@ -53,6 +68,8 @@ const Topnav = () => {
           <ThemeMenu />
         </div>
       </div>
+
+      {showAlert.show && <Alert {...showAlert} removeAlert={displayAlert} />}
     </div>
   );
 };

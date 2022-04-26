@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ThemeAction from "../redux/actions/ThemeAction";
 import History from "../pages/History";
 import OutstandingOffers from "../pages/OutstandingOffers";
+import Storage from "../pages/Storage";
 import "./styles/layout.css";
 
 const Layout = () => {
@@ -37,6 +38,7 @@ const Layout = () => {
               <Route path="/create-offers" element={<CreateOffers />} />
               <Route path="/history" element={<History />} />
               <Route path="/accounts" element={<Accounts />} />
+              <Route path="/current-storage" element={<Storage />} />
               <Route
                 path="/outstanding-offers"
                 element={<OutstandingOffers />}
