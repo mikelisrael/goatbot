@@ -15,6 +15,10 @@ const OutstandingOffers = () => {
   const [selMultiple, setSelMultiple] = useState(false);
   const [selected, setSelected] = useState([]);
   const { showAlert, displayAlert } = useGlobalContext();
+  const [sortAtoZ, setSortAtoZ] = useState("asc");
+  const [sortLength, setSortLength] = useState("asc");
+
+  // console.log(sortAtoZ, outStandingOffers);
 
   const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
 
@@ -61,6 +65,28 @@ const OutstandingOffers = () => {
     setSelected([]);
   };
 
+  const sortAlphabetically = () => {
+    if (sortAtoZ === "asc") {
+      outStandingOffers.sort((a, b) => (a.id > b.id ? 1 : -1));
+      setSortAtoZ("dsc");
+    }
+    if (sortAtoZ === "dsc") {
+      outStandingOffers.sort((a, b) => (a.id > b.id ? -1 : 1));
+      setSortAtoZ("asc");
+    }
+  };
+
+  const sortByLength = () => {
+    if (sortLength === "asc") {
+      outStandingOffers.sort((a, b) => (a.id.length > b.id.length ? 1 : -1));
+      setSortLength("dsc");
+    }
+    if (sortLength === "dsc") {
+      outStandingOffers.sort((a, b) => (a.id.length > b.id.length ? -1 : 1));
+      setSortLength("asc");
+    }
+  };
+
   return (
     <div>
       <h2 className="page-header">Outstanding Offers</h2>
@@ -71,17 +97,29 @@ const OutstandingOffers = () => {
             <div className="card__body inline">
               <div className="sort_filter_div">
                 <span>Sort SKU:</span>
-                <span title="sort a-z">
-                  <i className="bx bx-sort-a-z"></i>
+                <span
+                  title={`sort ${sortAtoZ === "asc" ? "a-z" : "z-a"}`}
+                  onClick={sortAlphabetically}
+                >
+                  <i
+                    className={` ${
+                      sortAtoZ === "asc" ? "bx bx-sort-z-a" : "bx bx-sort-a-z"
+                    } `}
+                  ></i>
                 </span>
-                <span title="sort z-a">
-                  <i className="bx bx-sort-z-a"></i>
-                </span>
-                <span title="sort smallest to largest">
-                  <i className="bx bx-sort-up"></i>
-                </span>
-                <span title="sort largest to smallest">
-                  <i className="bx bx-sort-down"></i>
+                <span
+                  title={`sort ${
+                    sortLength === "asc"
+                      ? "smallest to largest"
+                      : "largest to smallest"
+                  } `}
+                  onClick={sortByLength}
+                >
+                  <i
+                    className={`${
+                      sortLength === "asc" ? "bx bx-sort-down" : "bx bx-sort-up"
+                    }`}
+                  ></i>
                 </span>
               </div>
 
@@ -110,6 +148,7 @@ const OutstandingOffers = () => {
         </div>
       </div>
 
+{/*  */}
       <div className="row">
         <div className="col-12">
           <div className="card">

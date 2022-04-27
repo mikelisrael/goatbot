@@ -46,7 +46,7 @@ export const latestOrders = {
   ],
   body: [
     {
-      id: "#OD1511",
+      id: "#OA1511",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
@@ -64,8 +64,8 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1313",
-      user: "anthony baker",
+      id: "#OA1313",
+      user: "Malewa baker",
       date: "27 Jun 2021",
       size: 9,
       price: "$200",
@@ -82,7 +82,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD20715",
+      id: "#OD20",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -91,7 +91,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD66215",
+      id: "#OF66215",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -109,7 +109,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD171211",
+      id: "#OG171211",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -118,7 +118,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD14015",
+      id: "#OH14015",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -136,7 +136,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD0911",
+      id: "#OI0911",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
@@ -145,7 +145,7 @@ export const latestOrders = {
       email: "mjunifer1@buzzfeed.com",
     },
     {
-      id: "#OD1712",
+      id: "#OR1712",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 8,
@@ -154,7 +154,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1713",
+      id: "#OX1713",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 9,
@@ -172,7 +172,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD1712",
+      id: "#OM1712",
       user: "frank iva",
       date: "1 Jun 2021",
       size: 13,
@@ -181,7 +181,7 @@ export const latestOrders = {
       status: true,
     },
     {
-      id: "#OD1713",
+      id: "#OM1713",
       user: "anthony baker",
       date: "27 Jun 2021",
       size: 13,
@@ -190,7 +190,7 @@ export const latestOrders = {
       status: false,
     },
     {
-      id: "#OD1711",
+      id: "#ON1711",
       user: "john doe",
       date: "17 Jun 2021",
       size: 7.5,
