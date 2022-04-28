@@ -12,9 +12,9 @@ thead {
   background-color: var(--second-bg);
 }
 
-tr {
+/* tr {
   text-align: left;
-}
+} */
 
 th {
   text-transform: capitalize;
@@ -33,6 +33,10 @@ td {
 tbody > tr:hover {
   background-color: var(--second-bg);
   color: var(--txt-color);
+}
+
+.shoe-name {
+  text-transform: capitalize;
 }
 
 .table__pagination {

@@ -33,10 +33,5 @@
     "display_name": "notifications",
     "route": "/notifications",
     "icon": "bx bx-bell"
-  },
-  {
-    "display_name": "log out",
-    "route": "/logout",
-    "icon": "bx bx-log-out-circle bx-rotate-180"
   }
 ]

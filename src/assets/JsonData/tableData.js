@@ -305,6 +305,7 @@ export const outstandingOffersHead = [
   "SKU",
   "size",
   "outstanding offers",
+
 ];
 
 export const orderHistoryHead = [

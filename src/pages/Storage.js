@@ -1,11 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { latestOrders } from "../assets/JsonData/tableData";
 import Table from "../components/Table";
 
 const Storage = () => {
-  const [storage, setStorage] = useState(
-    latestOrders.body.filter((item) => item.status === true)
-  );
+  const storage = latestOrders.body.filter((item) => item.status === true);
 
   const storageHeader = [
     "s/n",
@@ -30,8 +28,6 @@ const Storage = () => {
       <td className="expand-btn">Expand</td>
     </tr>
   );
-
-  
 
   return (
     <div>

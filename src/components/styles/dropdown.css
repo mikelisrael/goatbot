@@ -32,7 +32,7 @@
 .dropdown__content {
   position: absolute;
   top: calc(100% + 10px);
-  right: -5px;
+  right: -15px;
   width: max-content;
   max-width: 400px;
   background-color: var(--main-bg);

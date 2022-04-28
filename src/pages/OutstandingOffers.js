@@ -5,20 +5,18 @@ import {
 } from "../assets/JsonData/tableData";
 import Table from "../components/Table";
 import { FaTrash } from "react-icons/fa/";
-import "./styles/outstanding.css";
 import { useGlobalContext } from "../context";
-import Alert from "../components/Alert";
+import { toast } from "react-toastify";
+import "./styles/outstanding.css";
 
 const OutstandingOffers = () => {
   const tableHead = ["s/n", ...outstandingOffersHead, ""];
   const [outStandingOffers, setOutStandingOffers] = useState(latestOrders.body);
   const [selMultiple, setSelMultiple] = useState(false);
   const [selected, setSelected] = useState([]);
-  const { showAlert, displayAlert } = useGlobalContext();
+  const { toastOptions } = useGlobalContext();
   const [sortAtoZ, setSortAtoZ] = useState("asc");
   const [sortLength, setSortLength] = useState("asc");
-
-  // console.log(sortAtoZ, outStandingOffers);
 
   const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
 
@@ -55,12 +53,11 @@ const OutstandingOffers = () => {
     setOutStandingOffers(
       outStandingOffers.filter((item) => !selected.includes(item.id))
     );
-    displayAlert(
-      true,
+    toast.error(
       `${selected.length} ${
         selected.length > 1 ? "accounts" : "account"
       } removed`,
-      "danger"
+      toastOptions
     );
     setSelected([]);
   };
@@ -136,7 +133,8 @@ const OutstandingOffers = () => {
                   )}
                 </span>
                 <span
-                  title="Delete multiple"
+                  
+                  data-title="Delete Multiple"
                   className="delete-btn"
                   onClick={deleteMultiple}
                 >
@@ -148,7 +146,6 @@ const OutstandingOffers = () => {
         </div>
       </div>
 
-{/*  */}
       <div className="row">
         <div className="col-12">
           <div className="card">
@@ -163,7 +160,6 @@ const OutstandingOffers = () => {
           </div>
         </div>
       </div>
-      {showAlert.show && <Alert {...showAlert} removeAlert={displayAlert} />}
     </div>
   );
 };

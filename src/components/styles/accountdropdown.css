@@ -8,7 +8,7 @@
   background-color: var(--main-bg);
   user-select: none;
   border-radius: var(--border-radius);
-  z-index: 10;
+  z-index: 4;
 }
 
 .account-dropdown .account-dropdown-btn {

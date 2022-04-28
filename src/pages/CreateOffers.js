@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AccountsDropdown from "../components/AccountsDropdown";
-import Alert from "../components/Alert";
 import { useGlobalContext } from "../context";
+import { toast } from "react-toastify";
 import "./styles/createoffers.css";
 
 const CreateOffers = () => {
@@ -11,7 +11,7 @@ const CreateOffers = () => {
     multiple: false,
   });
   const [itemSelected, setItemSelected] = useState({ price: "", size: "" });
-  const { showAlert, displayAlert } = useGlobalContext();
+  const { toastOptions } = useGlobalContext();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -23,32 +23,32 @@ const CreateOffers = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selected) {
-      displayAlert(true, "select an account", "danger");
+      toast.error("oops! select an account", toastOptions);
     } else if (selected && !(itemQuantity.single || itemQuantity.multiple)) {
-      displayAlert(true, "choose quantity", "danger");
+      toast.error("choose quantity", toastOptions);
     } else if (
       selected &&
       (itemQuantity.single || itemQuantity.multiple) &&
       !itemSelected.price &&
       itemSelected.size
     ) {
-      displayAlert(true, "enter price", "danger");
+      toast.error("enter price", toastOptions);
     } else if (
       selected &&
       (itemQuantity.single || itemQuantity.multiple) &&
       itemSelected.price &&
       !itemSelected.size
     ) {
-      displayAlert(true, "enter size", "danger");
+      toast.error("enter size", toastOptions);
     } else if (
       selected &&
       (itemQuantity.single || itemQuantity.multiple) &&
       !(itemSelected.price && itemSelected.size)
     ) {
-      displayAlert(true, "Fill the form", "danger");
+      toast.error("Fill the form", toastOptions);
     } else {
       setItemSelected({ price: "", size: "" });
-      displayAlert(true, "offer created", "success");
+      toast.success("offer created", toastOptions);
     }
   };
 
@@ -123,8 +123,6 @@ const CreateOffers = () => {
           </form>
         </div>
       </div>
-
-      {showAlert.show && <Alert {...showAlert} removeAlert={displayAlert} />}
     </div>
   );
 };

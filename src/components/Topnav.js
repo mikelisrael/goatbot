@@ -3,8 +3,8 @@ import Dropdown from "./Dropdown";
 import notifications from "../assets/JsonData/notification.json";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
-import Alert from "./Alert";
 import ThemeMenu from "./ThemeMenu";
+import { toast } from "react-toastify";
 import "./styles/topnav.css";
 
 const renderNotificationItem = (item, index) => {
@@ -18,7 +18,7 @@ const renderNotificationItem = (item, index) => {
 
 const Topnav = () => {
   const refreshBtnRef = useRef(null);
-  const { showAlert, displayAlert } = useGlobalContext();
+  const { toastOptions } = useGlobalContext();
 
   const refreshClick = () => {
     const endTimeout = new Date();
@@ -38,7 +38,7 @@ const Topnav = () => {
 
   const hideShowRefresh = () => {
     refreshBtnRef.current.classList.add("hide");
-    displayAlert(true, "syncing systems", "success");
+    toast.info("Synchronizing systems", toastOptions);
     refreshClick();
   };
 
@@ -50,7 +50,7 @@ const Topnav = () => {
             className="refresh-btn hide"
             ref={refreshBtnRef}
             onClick={hideShowRefresh}
-            title="Syns Systems"
+            data-title="Sync Systems"
           >
             <i className="bx bx-refresh"></i>
           </div>
@@ -68,8 +68,6 @@ const Topnav = () => {
           <ThemeMenu />
         </div>
       </div>
-
-      {showAlert.show && <Alert {...showAlert} removeAlert={displayAlert} />}
     </div>
   );
 };

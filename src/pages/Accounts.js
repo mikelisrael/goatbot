@@ -3,10 +3,10 @@ import Table from "../components/Table";
 import customersList from "../assets/JsonData/customers-list.json";
 import { FaTrash } from "react-icons/fa/";
 import { v4 as uuidv4 } from "uuid";
-import Alert from "../components/Alert";
 import { useGlobalContext } from "../context";
 import "./styles/accounts.css";
 import OutsideClickHandler from "react-outside-click-handler";
+import { toast } from "react-toastify";
 
 const customerTableHead = [
   "s/n",
@@ -22,7 +22,7 @@ const Accounts = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [accountList, setAccountList] = useState(customersList);
   const [account, setAccount] = useState({ email: "", password: "" });
-  const { showAlert, displayAlert, user } = useGlobalContext();
+  const { user, toastOptions } = useGlobalContext();
   const [checked, setChecked] = useState(false);
   const modalRef = useRef(null);
   const modalInputRef = useRef(null);
@@ -69,8 +69,6 @@ const Accounts = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (account.password && account.email) {
-      console.log(emailValidation(account.email));
-
       // handle email validation
       if (emailValidation(account.email)) {
         const newAccount = {
@@ -82,20 +80,20 @@ const Accounts = () => {
         };
         setAccountList([newAccount, ...accountList]);
         setAccount({ email: "", password: "" });
-        displayAlert(true, "Account added", "success");
+        toast.success("Account added", toastOptions);
       } else {
-        displayAlert(true, "invald email", "danger");
+        toast.error("Oops! invalid email", toastOptions);
       }
     } else if (account.email)
-      displayAlert(true, "please include password", "danger");
+      toast.error("Uh-oh! include password", toastOptions);
     else if (account.password)
-      displayAlert(true, "please include email", "danger");
+      toast.error("please include email", toastOptions);
     else if (!(account.password && account.email))
-      displayAlert(true, "please enter details", "danger");
+      toast.error("please enter details", toastOptions);
   };
 
   const removeAccount = (id) => {
-    displayAlert(true, "account removed", "danger");
+    toast.error("account removed", toastOptions);
     setAccountList(accountList.filter((item) => item.id !== id));
   };
 
@@ -116,10 +114,10 @@ const Accounts = () => {
         setChecked(true);
         closeModal();
       } else {
-        displayAlert(true, "incorrect password", "danger");
+        toast.error("incorrect password", toastOptions);
       }
     } else {
-      displayAlert(true, "invald entry", "danger");
+      toast.error("oh snap! invalid entry", toastOptions);
     }
   };
 
@@ -198,9 +196,6 @@ const Accounts = () => {
           </div>
         </div>
       </div>
-        {showAlert.show && (
-          <Alert {...showAlert} removeAlert={displayAlert} list={accountList} />
-        )}
     </div>
   );
 };

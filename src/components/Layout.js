@@ -10,7 +10,10 @@ import ThemeAction from "../redux/actions/ThemeAction";
 import History from "../pages/History";
 import OutstandingOffers from "../pages/OutstandingOffers";
 import Storage from "../pages/Storage";
+import { ToastContainer } from "react-toastify";
+
 import "./styles/layout.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = () => {
   const themeReducer = useSelector((state) => state.ThemeReducer);
@@ -44,6 +47,7 @@ const Layout = () => {
                 element={<OutstandingOffers />}
               />
             </Routes>
+            <ToastContainer />
           </div>
         </div>
       </Router>

@@ -77,7 +77,7 @@ ul {
 input {
   border: 2px solid transparent;
   outline: 0;
-  padding:  15px 20px;
+  padding: 15px 20px;
   font-size: 1rem;
   color: var(--txt-color);
   background-color: var(--main-bg);
@@ -125,7 +125,8 @@ input:focus {
 
 @media (max-width: 1024px) {
   .card.full-height {
-    height: 20rem;
+    height: 13rem;
+    padding: 10px 1px;
   }
 }
 
@@ -182,7 +183,109 @@ input:focus {
   background-color: grey;
 }
 
-.shoe-name{
-  text-transform: capitalize;
-  
+.loader-space {
+  height: 100vh;
+  background-color: var(--second-bg);
+  display: grid;
+  place-items: center;
+}
+
+.cubes {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100px;
+  height: 100px;
+  transition: all 300ms ease-in-out 0s;
+  z-index: 1;
+}
+
+.cube {
+  width: 33%;
+  height: 33%;
+  background-color: var(--main-color);
+  animation: cubes 2s infinite ease-in-out;
+}
+
+.cube-1 {
+  animation-delay: 0.2s;
+}
+
+.cube-2 {
+  animation-delay: 0.3s;
+}
+
+.cube-3 {
+  animation-delay: 0.4s;
+}
+
+.cube-4 {
+  animation-delay: 0.1s;
+}
+
+.cube-5 {
+  animation-delay: 0.2s;
+}
+
+.cube-6 {
+  animation-delay: 0.3s;
+}
+
+.cube-7 {
+  animation-delay: 0s;
+}
+
+.cube-8 {
+  animation-delay: 0.1s;
+}
+
+.cube-9 {
+  animation-delay: 0.2s;
+}
+
+@keyframes cubes {
+  0%,
+  70%,
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+  35% {
+    transform: scale3d(0, 0, 1);
+  }
+}
+
+
+/* use for any tag on your page */
+.refresh-btn:hover:after,
+.delete-btn:hover:after {
+  --scale: 1;
+  visibility: visible;
+}
+
+/* box for title text */
+.refresh-btn:after,
+.delete-btn:after {
+  --scale: 0;
+  content: attr(data-title);
+  /* position for title view box */
+  position: absolute;
+  bottom: -1.6em;
+  left: 100%;
+  z-index: 99999;
+  /* stilization */
+  background-color: #333;
+  color: white;
+  padding: 1px 5px 2px 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  font-size: 13px;
+  width: max-content;
+  transition: 50ms;
+  transform: scale(var(--scale));
+  transform-origin: top left;
+}
+
+.delete-btn,
+.refresh-btn {
+  position: relative;
 }

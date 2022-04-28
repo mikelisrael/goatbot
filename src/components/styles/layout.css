@@ -15,7 +15,8 @@
 
 @media (max-width: 532px) {
   .layout__content-main {
-    padding: 10px 10px;
+    padding: 10px 1px;
+    padding-right: 10px;
   }
 }
 
@@ -23,4 +24,10 @@
   .layout__content {
     padding-left: 70px;
   }
+}
+
+.myToasts {
+  text-transform: capitalize !important;
+  border-radius: 10px !important;
+  font-family: "Poppins", sans-serif !important;
 }
