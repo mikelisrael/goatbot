@@ -14,7 +14,7 @@ const AccountsDropdown = ({ selected, setSelected }) => {
           className="account-dropdown-btn"
           onClick={() => setIsActive(!isActive)}
         >
-          <span>{selected || "select account"}</span>
+          <span>{selected || "Select Account"}</span>
           <span className={`${isActive && "flip"}`}>
             <i className="bx bx-chevron-down"></i>
           </span>

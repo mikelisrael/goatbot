@@ -62,12 +62,17 @@ const History = () => {
 
     // if only in storage
     if (inStorage) {
-      newHistory = orderHistory.filter((val) => val.status === inStorage);
+      newHistory = latestOrders.body.filter((val) => val.status === inStorage);
       if (searchTerm) {
         newHistory = orderHistory.filter(
           (val) =>
             val.id.toLowerCase().includes(searchTerm.toLowerCase()) &&
             val.status === inStorage
+        );
+      }
+      if (selected) {
+        newHistory = orderHistory.filter(
+          (val) => val.status === inStorage && val.email === selected
         );
       }
       setOrderHistory(newHistory);
@@ -119,7 +124,7 @@ const History = () => {
           }}
         />
 
-        <AccountsDropdown selected={selected} setSelected={setSelected} />
+      <AccountsDropdown selected={selected} setSelected={setSelected} />
 
         <div>
           <input id="storage" type="checkbox" />

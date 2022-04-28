@@ -241,7 +241,7 @@ export const latestOrders = {
       size: 13,
       email: "ahaig7@live.com",
       price: "$200",
-      status: false,
+      status: true,
     },
     {
       id: "#OD1711",

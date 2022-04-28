@@ -47,7 +47,7 @@ const Topnav = () => {
       <div className="topnav__right">
         <div className="topnav__right-item">
           <div
-            className="refresh-btn hide"
+            className="refresh-btn tooltip hide"
             ref={refreshBtnRef}
             onClick={hideShowRefresh}
             data-title="Sync Systems"

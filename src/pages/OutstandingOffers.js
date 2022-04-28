@@ -95,7 +95,8 @@ const OutstandingOffers = () => {
               <div className="sort_filter_div">
                 <span>Sort SKU:</span>
                 <span
-                  title={`sort ${sortAtoZ === "asc" ? "a-z" : "z-a"}`}
+                  className="tooltip"
+                  data-title={`sort ${sortAtoZ === "asc" ? "a-z" : "z-a"}`}
                   onClick={sortAlphabetically}
                 >
                   <i
@@ -105,7 +106,8 @@ const OutstandingOffers = () => {
                   ></i>
                 </span>
                 <span
-                  title={`sort ${
+                  className="tooltip"
+                  data-title={`sort ${
                     sortLength === "asc"
                       ? "smallest to largest"
                       : "largest to smallest"
@@ -133,9 +135,8 @@ const OutstandingOffers = () => {
                   )}
                 </span>
                 <span
-                  
                   data-title="Delete Multiple"
-                  className="delete-btn"
+                  className="delete-btn tooltip"
                   onClick={deleteMultiple}
                 >
                   {selected.length > 0 && <FaTrash />}

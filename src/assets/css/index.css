@@ -254,17 +254,16 @@ input:focus {
   }
 }
 
-
 /* use for any tag on your page */
-.refresh-btn:hover:after,
-.delete-btn:hover:after {
+.tooltip:hover:after,
+.tooltip:hover:after {
   --scale: 1;
   visibility: visible;
 }
 
 /* box for title text */
-.refresh-btn:after,
-.delete-btn:after {
+.tooltip:after,
+.tooltip:after {
   --scale: 0;
   content: attr(data-title);
   /* position for title view box */
@@ -272,7 +271,7 @@ input:focus {
   bottom: -1.6em;
   left: 100%;
   z-index: 99999;
-  /* stilization */
+  /* stylization */
   background-color: #333;
   color: white;
   padding: 1px 5px 2px 5px;
@@ -283,9 +282,10 @@ input:focus {
   transition: 50ms;
   transform: scale(var(--scale));
   transform-origin: top left;
+  text-transform: capitalize;
 }
 
-.delete-btn,
-.refresh-btn {
+.tooltip,
+.tooltip {
   position: relative;
 }
