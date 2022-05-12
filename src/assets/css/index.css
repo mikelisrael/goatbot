@@ -78,11 +78,11 @@ input {
   border: 2px solid transparent;
   outline: 0;
   padding: 15px 20px;
-  font-size: 1rem;
   color: var(--txt-color);
   background-color: var(--main-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  font-family: "Poppins", sans-serif;
 }
 
 input:focus {
@@ -255,14 +255,12 @@ input:focus {
 }
 
 /* use for any tag on your page */
-.tooltip:hover:after,
 .tooltip:hover:after {
   --scale: 1;
   visibility: visible;
 }
 
 /* box for title text */
-.tooltip:after,
 .tooltip:after {
   --scale: 0;
   content: attr(data-title);
@@ -285,7 +283,12 @@ input:focus {
   text-transform: capitalize;
 }
 
-.tooltip,
 .tooltip {
   position: relative;
+}
+
+@media (max-width: 767px) {
+  .tooltip:after {
+    max-width: 100px;
+  }
 }

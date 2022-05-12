@@ -20,7 +20,8 @@
   border-radius: var(--border-radius);
 }
 
-.form-checkboxes {
+.form-checkboxes,
+.create-offers-checkbxs {
   display: flex;
   text-transform: capitalize;
   flex-wrap: wrap;
@@ -51,7 +52,7 @@
   text-transform: capitalize;
 }
 
-.create-offers input[type="radio"] + label {
+.create-offers input[type="radio"] + label, .create-offers-checkbxs label {
   margin-top: 1rem;
 }
 

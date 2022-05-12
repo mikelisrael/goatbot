@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Badge from "../components/Badge";
 import Table from "../components/Table";
 import { latestOrders } from "../assets/JsonData/tableData";
@@ -114,17 +114,17 @@ const History = () => {
   return (
     <div className="history">
       <h2 className="page-header">Order history</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <input
           type="text"
-          placeholder="search sku"
+          placeholder="Search SKU"
           name="sku"
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
         />
 
-      <AccountsDropdown selected={selected} setSelected={setSelected} />
+        <AccountsDropdown selected={selected} setSelected={setSelected} />
 
         <div>
           <input id="storage" type="checkbox" />
@@ -158,4 +158,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default React.memo(History);

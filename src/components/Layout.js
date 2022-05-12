@@ -11,7 +11,10 @@ import History from "../pages/History";
 import OutstandingOffers from "../pages/OutstandingOffers";
 import Storage from "../pages/Storage";
 import { ToastContainer } from "react-toastify";
+import Notifications from "../pages/Notifications";
+import AOS from "aos";
 
+import "aos/dist/aos.css";
 import "./styles/layout.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,6 +32,13 @@ const Layout = () => {
     dispatch(ThemeAction.setColor(colorClass));
   }, [dispatch]);
 
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 200,
+    });
+  }, []);
+
   return (
     <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
       <Router>
@@ -42,6 +52,7 @@ const Layout = () => {
               <Route path="/history" element={<History />} />
               <Route path="/accounts" element={<Accounts />} />
               <Route path="/current-storage" element={<Storage />} />
+              <Route path="/notifications" element={<Notifications />} />
               <Route
                 path="/outstanding-offers"
                 element={<OutstandingOffers />}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./styles/accountdropdown.css";
 import customersList from "../assets/JsonData/customers-list.json";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -20,7 +20,7 @@ const AccountsDropdown = ({ selected, setSelected }) => {
           </span>
         </div>
         {isActive && (
-          <div className="account-dropdown-content">
+          <div className="account-dropdown-content" data-aos="fade-up">
             {customersList
               .sort((a, b) => a.email.localeCompare(b.email))
               .map((customer) => {
@@ -45,4 +45,4 @@ const AccountsDropdown = ({ selected, setSelected }) => {
   );
 };
 
-export default AccountsDropdown;
+export default React.memo(AccountsDropdown);

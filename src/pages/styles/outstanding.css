@@ -1,6 +1,7 @@
 .expand-btn {
   color: var(--main-color);
   cursor: pointer;
+  user-select: none;
 }
 
 .expand-btn:hover {
@@ -9,7 +10,6 @@
 
 .sort_filter_div span {
   vertical-align: middle;
-  /* background: red; */
   margin-right: 15px;
 }
 
@@ -38,4 +38,10 @@
 
 .selected_item {
   background-color: var(--second-bg);
+}
+
+.blur {
+  filter: blur(3px);
+  user-select: none;
+  pointer-events: none;
 }

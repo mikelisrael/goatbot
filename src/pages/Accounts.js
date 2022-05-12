@@ -124,7 +124,7 @@ const Accounts = () => {
   return (
     <div className="accounts">
       <h2 className="page-header">Accounts</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div className="form-control">
           <input
             type="text"

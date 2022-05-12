@@ -59,7 +59,7 @@ const CreateOffers = () => {
         <div className="create-offers-content">
           <AccountsDropdown selected={selected} setSelected={setSelected} />
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form-checkboxes">
               <input id="one" type="radio" name="quantity" />
               <label
@@ -109,11 +109,33 @@ const CreateOffers = () => {
                   onChange={handleChange}
                 />
 
-                <input id="repeat" type="checkbox" name="quantity" />
-                <label htmlFor="repeat">
-                  <span></span>
-                  Repeat purchasing mode
-                </label>
+                <div className="create-offers-checkbxs">
+                  <span>
+                    <input
+                      id="repeat"
+                      type="checkbox"
+                      name="quantity"
+                      style={{ display: "none" }}
+                    />
+                    <label htmlFor="repeat">
+                      <span></span>
+                      Repeat purchasing mode
+                    </label>
+                  </span>
+
+                  <span>
+                    <input
+                      id="match"
+                      type="checkbox"
+                      name="quantity"
+                      style={{ display: "none" }}
+                    />
+                    <label htmlFor="match">
+                      <span></span>
+                      Match highest offer
+                    </label>
+                  </span>
+                </div>
 
                 <button type="submit">Create</button>
               </div>

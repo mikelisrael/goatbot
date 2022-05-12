@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import "./styles/dropdown.css";
 
 const clickOutsideRef = (contentRef, toggleRef) => {
@@ -47,4 +47,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default React.memo(Dropdown);

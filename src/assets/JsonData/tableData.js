@@ -305,7 +305,6 @@ export const outstandingOffersHead = [
   "SKU",
   "size",
   "outstanding offers",
-
 ];
 
 export const orderHistoryHead = [
@@ -316,4 +315,56 @@ export const orderHistoryHead = [
   "price",
   "account",
   "storage",
+];
+
+export const expandData = [
+  {
+    _id: "626fb5fe40b90e3b5733e14c",
+    age: 28,
+    email: "hopeconrad@xoggle.com",
+    price: "$473",
+    repeatPurchaseOn: true,
+  },
+  {
+    _id: "626fb5fe84e3bac6cdf3afbf",
+    age: 24,
+    email: "hopeconrad@xoggle.com",
+    price: "$389",
+    repeatPurchaseOn: true,
+  },
+  {
+    _id: "626fb5fe92c89ae067ddcf96",
+    age: 20,
+    email: "hopeconrad@xoggle.com",
+    price: "$718",
+    repeatPurchaseOn: false,
+  },
+  {
+    _id: "626fb5fe40ab5bfb6c5cf320",
+    age: 27,
+    email: "hopeconrad@xoggle.com",
+    price: "$840",
+    repeatPurchaseOn: true,
+  },
+  {
+    _id: "626fb5fe1d8562fd92ac7e4d",
+    age: 31,
+    email: "hopeconrad@xoggle.com",
+    price: "$940",
+    repeatPurchaseOn: true,
+  },
+  {
+    _id: "626fb5fe527df18f901f3f3e",
+    age: 31,
+    email: "hopeconrad@xoggle.com",
+    price: "$844",
+    repeatPurchaseOn: true,
+  },
+  {
+    _id: "626fb5fe883a8b9bc4e5d054",
+    age: 28,
+    email: "hopeconrad@xoggle.com",
+    price: "$332",
+    repeatPurchaseOn: false,
+  },
 ];
