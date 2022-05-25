@@ -52,7 +52,8 @@
   text-transform: capitalize;
 }
 
-.create-offers input[type="radio"] + label, .create-offers-checkbxs label {
+.create-offers input[type="radio"] + label,
+.create-offers-checkbxs label {
   margin-top: 1rem;
 }
 
@@ -160,4 +161,30 @@ input[type="checkbox"]:focus + label > span {
 .create-offers .form-control input {
   height: 100%;
   width: 100%;
+}
+
+.final-pieces {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.file-uploader {
+  margin-top: 1rem;
+}
+
+.file-uploader label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.file-uploader label:hover {
+  color: var(--main-color);
+}
+
+.file-uploader label i {
+  font-size: 1.5rem;
 }

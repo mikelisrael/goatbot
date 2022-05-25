@@ -15,18 +15,18 @@ const Dialogue = ({ setShowDialogue }) => {
   clickOutsideRef(dialogueBx);
 
   return (
-      <main className="dialogue">
-        <div className="dialogue-content" ref={dialogueBx} data-aos="fade-up">
-          <div className="single-offer">
-            <h2>Title: Yeezy 350 Zyon | FZ1267 | Size 9</h2>
+    <main className="dialogue">
+      <div className="dialogue-content" ref={dialogueBx} data-aos="fade-up">
+        <div className="single-offer">
+          <h2>Title: Yeezy 350 Zyon | FZ1267 | Size 9</h2>
 
-            <div className="single-offer-acct">
-              <h3>mjunifer1@buzzfeed.com</h3>
-              lorem500
-            </div>
+          <div className="single-offer-acct">
+            <h3>mjunifer1@buzzfeed.com</h3>
+            lorem500
           </div>
         </div>
-      </main>
+      </div>
+    </main>
   );
 };
 

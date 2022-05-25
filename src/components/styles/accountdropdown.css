@@ -55,6 +55,10 @@
   transform: rotate(180deg);
 }
 
+.account-dropdown-btn span {
+  transition: 0.2s;
+}
+
 .account-dropdown-btn span i {
   font-size: 1.5rem;
 }

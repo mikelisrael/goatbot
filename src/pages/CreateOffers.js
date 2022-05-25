@@ -109,32 +109,49 @@ const CreateOffers = () => {
                   onChange={handleChange}
                 />
 
-                <div className="create-offers-checkbxs">
-                  <span>
-                    <input
-                      id="repeat"
-                      type="checkbox"
-                      name="quantity"
-                      style={{ display: "none" }}
-                    />
-                    <label htmlFor="repeat">
-                      <span></span>
-                      Repeat purchasing mode
-                    </label>
-                  </span>
+                <div className="final-pieces">
+                  <div className="create-offers-checkbxs">
+                    <span>
+                      <input
+                        id="repeat"
+                        type="checkbox"
+                        name="quantity"
+                        style={{ display: "none" }}
+                      />
+                      <label htmlFor="repeat">
+                        <span></span>
+                        Repeat purchasing mode
+                      </label>
+                    </span>
 
-                  <span>
+                    <span>
+                      <input
+                        id="match"
+                        type="checkbox"
+                        name="quantity"
+                        style={{ display: "none" }}
+                      />
+                      <label htmlFor="match">
+                        <span></span>
+                        Match highest offer
+                      </label>
+                    </span>
+                  </div>
+
+                  <div className="file-uploader">
                     <input
-                      id="match"
-                      type="checkbox"
-                      name="quantity"
+                      type="file"
+                      id="upload"
                       style={{ display: "none" }}
+                      accept=".txt"
+                      // onChange={(e) => submitProxy(e)}
                     />
-                    <label htmlFor="match">
-                      <span></span>
-                      Match highest offer
+
+                    <label htmlFor="upload">
+                      <i className="bx bx-cloud-upload"></i>
+                      Upload Proxy
                     </label>
-                  </span>
+                  </div>
                 </div>
 
                 <button type="submit">Create</button>
