@@ -2,20 +2,85 @@
   position: fixed;
   display: grid;
   place-items: center;
-  top: 15%;
+  top: 10%;
   transition: 0.5s;
   width: 83%;
 }
 
 .dialogue-content {
-  width: 60%;
+  width: 70%;
   overflow-y: auto;
   background-color: var(--main-bg);
   min-height: 400px;
-  max-height: 70vh;
+  max-height: 80vh;
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: var(--border-radius);
+}
+
+.single-offer-acct {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--txt-color-light);
+}
+
+.single-offer-acct:last-of-type {
+  border-bottom: none;
+}
+
+.single-offer-acct .title {
+  font-size: 0.9rem;
+}
+
+.single-offer-acct-child {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.single-offer-input {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.single-offer-input input {
+  padding: 0;
+  margin: 0;
+  background-color: var(--second-bg);
+  padding: 10px 20px;
+  box-shadow: none;
+  /* width: 30%; */
+  margin-right: 5px;
+  /* margin-left: -20px; */
+}
+
+/* hide arrows
+ Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield !important;
+}
+
+.single-offer-input button {
+  outline: none;
+  border: none;
+  color: var(--txt-white);
+  background-color: var(--main-color);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  padding: 10px 20px;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 980px) {
@@ -48,4 +113,13 @@
 
 .single-offer-acct h3 {
   font-weight: 600;
+}
+
+.edit-btn {
+  color: hsl(125, 71%, 66%);
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  color: hsl(125, 67%, 44%);
 }

@@ -46,7 +46,8 @@
   letter-spacing: 1px;
 }
 
-.form-control button:hover {
+.form-control button:hover,
+.single-offer-input button:hover {
   background-color: var(--second-color);
 }
 

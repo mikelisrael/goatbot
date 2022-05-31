@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import SingleOffer from "./SingleOffer";
 import "./styles/dialogue.css";
 
 const Dialogue = ({ setShowDialogue }) => {
@@ -18,12 +19,13 @@ const Dialogue = ({ setShowDialogue }) => {
     <main className="dialogue">
       <div className="dialogue-content" ref={dialogueBx} data-aos="fade-up">
         <div className="single-offer">
-          <h2>Title: Yeezy 350 Zyon | FZ1267 | Size 9</h2>
-
-          <div className="single-offer-acct">
-            <h3>mjunifer1@buzzfeed.com</h3>
-            lorem500
-          </div>
+          <h2 style={{ letterSpacing: "0.05rem", fontSize: "1.2rem" }}>
+            Title: Yeezy 350 Zyon | FZ1267 | Size 9
+          </h2>
+          <SingleOffer />
+          <SingleOffer />
+          <SingleOffer />
+          <SingleOffer />
         </div>
       </div>
     </main>

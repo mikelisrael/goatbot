@@ -29,20 +29,23 @@
 
 .create-offers input[type="radio"],
 .history input[type="checkbox"],
-.create-offers input[type="checkbox"] {
+.create-offers input[type="checkbox"],
+.single-offer-acct-child input[type="checkbox"] {
   display: block;
 }
 
 .create-offers input[type="radio"],
 .create-offers input[type="checkbox"],
-.history input[type="checkbox"] {
+.history input[type="checkbox"],
+.single-offer-acct-child input[type="checkbox"] {
   height: 0;
   width: 0;
 }
 
 .create-offers input[type="radio"] + label,
 .create-offers input[type="checkbox"] + label,
-.history input[type="checkbox"] + label {
+.history input[type="checkbox"] + label,
+.single-offer-acct-child input[type="checkbox"] + label {
   position: relative;
   display: flex;
   margin-right: 1.5rem;
@@ -59,7 +62,8 @@
 
 .create-offers input[type="radio"] + label > span,
 .create-offers input[type="checkbox"] + label > span,
-.history input[type="checkbox"] + label > span {
+.history input[type="checkbox"] + label > span,
+.single-offer-acct-child input[type="checkbox"] + label > span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +81,8 @@
 input[type="radio"]:focus + label,
 .create-offers input[type="checkbox"] + label:hover,
 .history input[type="checkbox"] + label:hover,
-input[type="checkbox"]:focus + label {
+input[type="checkbox"]:focus + label,
+.single-offer-acct-child input[type="checkbox"] + label:hover {
   color: var(--txt-color);
 }
 
@@ -85,26 +90,30 @@ input[type="checkbox"]:focus + label {
 input[type="radio"]:focus + label > span,
 .create-offers input[type="checkbox"] + label:hover > span,
 .history input[type="checkbox"] + label:hover > span,
+.single-offer-acct-child input[type="checkbox"] + label:hover > span,
 input[type="checkbox"]:focus + label > span {
   background: rgba(255, 255, 255, 0.1);
 }
 
 .create-offers input[type="radio"]:checked + label,
 .create-offers input[type="checkbox"]:checked + label,
-.history input[type="checkbox"]:checked + label {
+.history input[type="checkbox"]:checked + label,
+.single-offer-acct-child input[type="checkbox"]:checked + label {
   color: var(--txt-color);
 }
 
 .create-offers input[type="radio"]:checked + label > span,
 .create-offers input[type="checkbox"]:checked + label > span,
-.history input[type="checkbox"]:checked + label > span {
+.history input[type="checkbox"]:checked + label > span,
+.single-offer-acct-child input[type="checkbox"]:checked + label > span {
   border: 0.5em solid var(--main-color);
   animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
 }
 
 .create-offers input[type="radio"]:checked + label > span:before,
 .create-offers input[type="checkbox"]:checked + label > span:before,
-.history input[type="checkbox"]:checked + label > span:before {
+.history input[type="checkbox"]:checked + label > span:before,
+.single-offer-acct-child input[type="checkbox"]:checked + label > span:before {
   content: "";
   position: absolute;
   top: 0.6em;
