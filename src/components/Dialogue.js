@@ -24,8 +24,6 @@ const Dialogue = ({ setShowDialogue }) => {
           </h2>
           <SingleOffer />
           <SingleOffer />
-          <SingleOffer />
-          <SingleOffer />
         </div>
       </div>
     </main>
