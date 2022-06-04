@@ -1,8 +1,11 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { latestOrders } from "../assets/JsonData/tableData";
+import StorageDialogue from "../components/StorageDialogue";
 import Table from "../components/Table";
 
 const Storage = () => {
+  const [showDialogue, setShowDialogue] = useState(false);
+
   const storage = latestOrders.body.filter((item) => item.status === true);
 
   const storageHeader = [
@@ -25,29 +28,35 @@ const Storage = () => {
       <td>{item.size}</td>
       <td>{item.price}</td>
       <td>{item.size}</td>
-      <td className="expand-btn">Expand</td>
+      <td className="expand-btn" onClick={() => setShowDialogue(true)}>
+        Expand
+      </td>
     </tr>
   );
 
   return (
-    <div>
-      <h2 className="page-header">current storage</h2>
+    <>
+      <div className={`${showDialogue && "blur"}`}>
+        <h2 className="page-header">current storage</h2>
 
-      <div className="row">
-        <div className="col-12">
-          <div className="card">
-            <div className="card__body">
-              <Table
-                headData={storageHeader}
-                renderHead={(item, index) => renderCustomHeader(item, index)}
-                bodyData={storage}
-                renderBody={(item, index) => renderCustomBody(item, index)}
-              />
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card__body">
+                <Table
+                  headData={storageHeader}
+                  renderHead={(item, index) => renderCustomHeader(item, index)}
+                  bodyData={storage}
+                  renderBody={(item, index) => renderCustomBody(item, index)}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {showDialogue && <StorageDialogue setShowDialogue={setShowDialogue} />}
+    </>
   );
 };
 

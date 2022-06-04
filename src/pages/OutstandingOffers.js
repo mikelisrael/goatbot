@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   latestOrders,
   outstandingOffersHead,
@@ -25,12 +25,6 @@ const OutstandingOffers = () => {
   useEffect(() => {
     if (selected.length > 0) {
       setSelMultiple(true);
-
-      // setPreviousSelected(
-      //   outStandingOffers.indexOf(
-      //     outStandingOffers.find((item) => item.id === selected[0])
-      //   )
-      // );
     }
   }, [selected]);
 
@@ -62,6 +56,32 @@ const OutstandingOffers = () => {
     }
   };
 
+  // show image and remove image on timeout
+  const preview = useRef(null);
+  const [ID, setID] = useState(0);
+
+  const displayImage = (e) => {
+    setID(
+      setTimeout(() => {
+        if (!selMultiple) {
+          preview.current.classList.add("show-image");
+        }
+      }, 2000)
+    );
+
+    var x = e.clientX;
+    var y = e.clientY;
+
+    preview.current.style.left = x + "px";
+    preview.current.style.top = y + "px";
+  };
+
+  const removeImage = () => {
+    preview.current.classList.remove("show-image");
+    clearTimeout(ID);
+  };
+
+  // render table head and body
   const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
 
   const renderCustomBody = (item, index) => (
@@ -72,6 +92,8 @@ const OutstandingOffers = () => {
       }`}
       onMouseDown={(e) => ClickHighlight(e, item)}
       style={{ userSelect: "none" }}
+      onMouseOver={(e) => displayImage(e)}
+      onMouseLeave={() => removeImage()}
     >
       <td>{index + 1}</td>
       <td className="shoe-name">{item.user}</td>
@@ -96,6 +118,10 @@ const OutstandingOffers = () => {
           {selected.includes(item.id) ? "Deselect" : "Select"}
         </td>
       )}
+
+      <td ref={preview} className="image-container">
+        <img src="shoemodel2.jpg" alt="shoemodel2" />
+      </td>
     </tr>
   );
 
@@ -223,6 +249,7 @@ const OutstandingOffers = () => {
           </div>
         </div>
       </div>
+
       {showDialogue && <Dialogue setShowDialogue={setShowDialogue} />}
     </>
   );

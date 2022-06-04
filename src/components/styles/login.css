@@ -1,0 +1,58 @@
+.login {
+  height: 100vh;
+  background-color: var(--second-bg);
+  display: grid;
+  place-items: center;
+}
+
+.login form {
+  background-color: var(--main-bg);
+  width: 350px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.login h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.login form input {
+  background-color: var(--second-bg);
+  width: 100%;
+  margin: 15px 0;
+  box-shadow: none;
+}
+
+.login form span {
+  color: var(--main-color-red);
+}
+
+.login button {
+  margin: 20px 0;
+  outline: none;
+  border: none;
+  color: var(--txt-white);
+  background-color: var(--main-color);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  padding: 10px 0px;
+  letter-spacing: 1px;
+  width: 100%;
+  font-family: "poppins";
+}
+
+.login button:hover {
+  background-color: var(--second-color);
+}
+
+.error-dey,
+.error-dey:focus {
+  border: 2px solid var(--main-color-red);
+}

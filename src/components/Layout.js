@@ -17,8 +17,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./styles/layout.css";
 import "react-toastify/dist/ReactToastify.css";
+import Login from "./Login";
+import { useGlobalContext } from "../context";
+import Notfound from "../pages/Notfound";
 
 const Layout = () => {
+  const { token } = useGlobalContext();
   const themeReducer = useSelector((state) => state.ThemeReducer);
   const dispatch = useDispatch();
 
@@ -42,26 +46,39 @@ const Layout = () => {
   return (
     <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
       <Router>
-        <Sidebar />
-        <div className="layout__content">
-          <Topnav />
-          <div className="layout__content-main">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/create-offers" element={<CreateOffers />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/accounts" element={<Accounts />} />
-              <Route path="/current-storage" element={<Storage />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route
-                path="/outstanding-offers"
-                element={<OutstandingOffers />}
-              />
-            </Routes>
-            <ToastContainer />
-          </div>
-        </div>
+        {!token ? (
+          <Login />
+        ) : (
+          <>
+            <Sidebar />
+            <div className="layout__content">
+              <Topnav />
+              <div className="layout__content-main">
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/create-offers" element={<CreateOffers />} />
+                  <Route path="/history" element={<History />} />
+                  <Route path="/accounts" element={<Accounts />} />
+                  <Route path="/current-storage" element={<Storage />} />
+                  <Route path="/notifications" element={<Notifications />} />
+                  <Route
+                    path="/outstanding-offers"
+                    element={<OutstandingOffers />}
+                  />
+                  <Route path="*" element={<Notfound />} />
+                </Routes>
+              </div>
+            </div>
+          </>
+        )}
       </Router>
+
+      <ToastContainer
+        theme="colored"
+        position="top-center"
+        hideProgressBar
+        autoClose={2000}
+      />
     </div>
   );
 };

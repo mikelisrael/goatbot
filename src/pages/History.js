@@ -24,7 +24,7 @@ const History = () => {
       setOrderHistory(latestOrders.body);
     }
 
-    // if searchterm all 3, 1st - input
+    // if searchterm all 3, 1st - searchterm
     if (searchTerm) {
       newHistory = latestOrders.body.filter((val) =>
         val.id.toLowerCase().includes(searchTerm.toLowerCase())

@@ -45,3 +45,28 @@
   user-select: none;
   pointer-events: none;
 }
+
+tr {
+  position: relative;
+}
+
+.image-container {
+  position: fixed;
+  width: 300px;
+  display: none;
+  /* transition: 0.5s; */
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.show-image {
+  display: block;
+}
+
+@media (max-width: 400px) {
+  .show-image {
+    display: none;
+  }
+}
