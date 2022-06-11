@@ -128,11 +128,12 @@
   top: 1%;
   padding: 20px;
   padding-bottom: 40px;
-  background-color: var(--main-bg);
+  background-color: var(--second-bg);
   align-items: center;
   transform: scale(0);
   transition: transform 0.2s;
   border-radius: var(--border-radius);
+  z-index: 10;
 }
 
 .modal form {

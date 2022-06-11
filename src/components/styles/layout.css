@@ -28,8 +28,8 @@
   }
 }
 
-.myToasts {
-  text-transform: capitalize !important;
+.Toastify__toast {
   border-radius: 10px !important;
+  text-transform: capitalize !important;
   font-family: "Poppins", sans-serif !important;
 }

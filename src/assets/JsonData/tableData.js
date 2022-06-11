@@ -300,12 +300,7 @@ export const latestOrders = {
   ],
 };
 
-export const outstandingOffersHead = [
-  "shoe name",
-  "SKU",
-  "size",
-  "outstanding offers",
-];
+export const outstandingOffersHead = ["shoe name", "SKU", "size", "price"];
 
 export const orderHistoryHead = [
   "date/time",

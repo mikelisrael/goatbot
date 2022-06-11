@@ -175,12 +175,12 @@ input:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.473);
+  background: rgba(128, 128, 128, 0.836);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: grey;
+  background-color: rgb(100, 100, 100);
 }
 
 .loader-space {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  latestOrders,
+  // latestOrders,
   outstandingOffersHead,
 } from "../assets/JsonData/tableData";
 import Table from "../components/Table";
@@ -9,18 +9,30 @@ import { useGlobalContext } from "../context";
 import { toast } from "react-toastify";
 import Dialogue from "../components/Dialogue";
 import "./styles/outstanding.css";
+import { convertPriceToDollars } from "../utils/helperFunctions";
 
 const OutstandingOffers = () => {
   const tableHead = ["s/n", ...outstandingOffersHead, ""];
-  const [outStandingOffers, setOutStandingOffers] = useState(latestOrders.body);
+  const [outStandingOffers, setOutStandingOffers] = useState([]);
   const [selMultiple, setSelMultiple] = useState(false);
   const [selected, setSelected] = useState([]);
-  const { toastOptions } = useGlobalContext();
+  const { toastOptions, customFetch } = useGlobalContext();
   const [sortAtoZ, setSortAtoZ] = useState("asc");
   const [sortLength, setSortLength] = useState("asc");
   const [showDialogue, setShowDialogue] = useState(false);
   const [previousSelected, setPreviousSelected] = useState(0);
   let currentSelected;
+
+  // fetch outstanding offers
+  useEffect(() => {
+    const fetchOffers = async () => {
+      const data = await customFetch("http://137.184.44.121/api/offer/list");
+
+      setOutStandingOffers(data.data);
+    };
+
+    fetchOffers();
+  }, [customFetch]);
 
   useEffect(() => {
     if (selected.length > 0) {
@@ -64,9 +76,9 @@ const OutstandingOffers = () => {
     setID(
       setTimeout(() => {
         if (!selMultiple) {
-          preview.current.classList.add("show-image");
+          preview?.current.classList.add("show-image");
         }
-      }, 2000)
+      }, 500)
     );
 
     var x = e.clientX;
@@ -77,53 +89,58 @@ const OutstandingOffers = () => {
   };
 
   const removeImage = () => {
-    preview.current.classList.remove("show-image");
+    preview?.current.classList.remove("show-image");
     clearTimeout(ID);
   };
 
   // render table head and body
   const renderCustomHeader = (item, index) => <th key={index}>{item}</th>;
 
-  const renderCustomBody = (item, index) => (
-    <tr
-      key={index}
-      className={`${
-        selMultiple && selected.includes(item.id) && "selected_item"
-      }`}
-      onMouseDown={(e) => ClickHighlight(e, item)}
-      style={{ userSelect: "none" }}
-      onMouseOver={(e) => displayImage(e)}
-      onMouseLeave={() => removeImage()}
-    >
-      <td>{index + 1}</td>
-      <td className="shoe-name">{item.user}</td>
-      <td>{item.id}</td>
-      <td>{item.size}</td>
-      <td>{item.size}</td>
-      {!selMultiple ? (
-        <td className="expand-btn" onClick={() => setShowDialogue(true)}>
-          Expand
-        </td>
-      ) : (
-        <td
-          className="activated_sel"
-          onClick={() => {
-            selected.includes(item.id)
-              ? setSelected(selected.filter((value) => value !== item.id))
-              : setSelected([...selected, item.id]);
+  const renderCustomBody = (item, index) => {
+    const { title, sku: id, imageURL, size, price } = item;
 
-            setPreviousSelected(outStandingOffers.indexOf(item));
-          }}
-        >
-          {selected.includes(item.id) ? "Deselect" : "Select"}
-        </td>
-      )}
+    // TODO: implement number of offers
+    return (
+      <tr
+        key={index}
+        className={`${
+          selMultiple && selected.includes(item.id) && "selected_item"
+        }`}
+        onMouseDown={(e) => ClickHighlight(e, item)}
+        style={{ userSelect: "none" }}
+        onMouseOver={(e) => displayImage(e)}
+        onMouseLeave={() => removeImage()}
+      >
+        <td>{index + 1}</td>
+        <td className="shoe-name">{title}</td>
+        <td>{id}</td>
+        <td>{size}</td>
+        <td>${convertPriceToDollars(price)}</td>
+        {!selMultiple ? (
+          <td className="expand-btn" onClick={() => setShowDialogue(true)}>
+            Expand
+          </td>
+        ) : (
+          <td
+            className="activated_sel"
+            onClick={() => {
+              selected.includes(item.id)
+                ? setSelected(selected.filter((value) => value !== item.id))
+                : setSelected([...selected, item.id]);
 
-      <td ref={preview} className="image-container">
-        <img src="shoemodel2.jpg" alt="shoemodel2" />
-      </td>
-    </tr>
-  );
+              setPreviousSelected(outStandingOffers.indexOf(item));
+            }}
+          >
+            {selected.includes(item.id) ? "Deselect" : "Select"}
+          </td>
+        )}
+
+        <td ref={preview} className="image-container">
+          <img src={imageURL} alt={title} />
+        </td>
+      </tr>
+    );
+  };
 
   const deleteMultiple = () => {
     setOutStandingOffers(

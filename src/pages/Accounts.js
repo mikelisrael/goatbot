@@ -22,7 +22,7 @@ const Accounts = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [accountList, setAccountList] = useState(customersList);
   const [account, setAccount] = useState({ email: "", password: "" });
-  const { user, toastOptions } = useGlobalContext();
+  const { user } = useGlobalContext();
   const [checked, setChecked] = useState(false);
   const modalRef = useRef(null);
   const modalInputRef = useRef(null);
@@ -80,20 +80,18 @@ const Accounts = () => {
         };
         setAccountList([newAccount, ...accountList]);
         setAccount({ email: "", password: "" });
-        toast.success("Account added", toastOptions);
+        toast.success("Account added");
       } else {
-        toast.error("Oops! invalid email", toastOptions);
+        toast.error("Oops! invalid email");
       }
-    } else if (account.email)
-      toast.error("Uh-oh! include password", toastOptions);
-    else if (account.password)
-      toast.error("please include email", toastOptions);
+    } else if (account.email) toast.error("Uh-oh! include password");
+    else if (account.password) toast.error("please include email");
     else if (!(account.password && account.email))
-      toast.error("please enter details", toastOptions);
+      toast.error("please enter details");
   };
 
   const removeAccount = (id) => {
-    toast.error("account removed", toastOptions);
+    toast.error("account removed");
     setAccountList(accountList.filter((item) => item.id !== id));
   };
 
@@ -114,10 +112,10 @@ const Accounts = () => {
         setChecked(true);
         closeModal();
       } else {
-        toast.error("incorrect password", toastOptions);
+        toast.error("incorrect password");
       }
     } else {
-      toast.error("oh snap! invalid entry", toastOptions);
+      toast.error("oh snap! invalid entry");
     }
   };
 

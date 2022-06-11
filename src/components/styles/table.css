@@ -60,6 +60,9 @@ tbody > tr:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background-color: var(--main-color);
+  margin: 0 5px;
+  color: white;
 }
 
 .table__pagination-item.active,

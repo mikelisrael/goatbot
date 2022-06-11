@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AccountsDropdown from "../components/AccountsDropdown";
-import { useGlobalContext } from "../context";
 import { toast } from "react-toastify";
 import "./styles/createoffers.css";
 
@@ -10,8 +9,11 @@ const CreateOffers = () => {
     single: false,
     multiple: false,
   });
-  const [itemSelected, setItemSelected] = useState({ price: "", size: "" });
-  const { toastOptions } = useGlobalContext();
+  const [itemSelected, setItemSelected] = useState({
+    price: "",
+    size: "",
+    slug: "",
+  });
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -22,33 +24,20 @@ const CreateOffers = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!selected) {
-      toast.error("oops! select an account", toastOptions);
+      toast.error("oops! select an account");
     } else if (selected && !(itemQuantity.single || itemQuantity.multiple)) {
-      toast.error("choose quantity", toastOptions);
-    } else if (
-      selected &&
-      (itemQuantity.single || itemQuantity.multiple) &&
-      !itemSelected.price &&
-      itemSelected.size
-    ) {
-      toast.error("enter price", toastOptions);
-    } else if (
-      selected &&
-      (itemQuantity.single || itemQuantity.multiple) &&
-      itemSelected.price &&
-      !itemSelected.size
-    ) {
-      toast.error("enter size", toastOptions);
-    } else if (
-      selected &&
-      (itemQuantity.single || itemQuantity.multiple) &&
-      !(itemSelected.price && itemSelected.size)
-    ) {
-      toast.error("Fill the form", toastOptions);
+      toast.error("choose quantity");
+    } else if (!itemSelected.slug) {
+      toast.error("enter slug");
+    } else if (!itemSelected.size) {
+      toast.error("enter size");
+    } else if (!itemSelected.price) {
+      toast.error("enter price");
     } else {
-      setItemSelected({ price: "", size: "" });
-      toast.success("offer created", toastOptions);
+      setItemSelected({ price: "", size: "", slug: "" });
+      toast.success("offer created");
     }
   };
 
@@ -86,6 +75,13 @@ const CreateOffers = () => {
 
             <div className="details-input-form">
               <div className="form-control">
+                <input
+                  type="text"
+                  placeholder="Enter slug e.g. air-jordan-2-retro-union-grey-fog"
+                  name="slug"
+                  value={itemSelected.slug}
+                  onChange={handleChange}
+                />
                 <input
                   type="text"
                   placeholder={`Input ${
@@ -144,10 +140,11 @@ const CreateOffers = () => {
                       id="upload"
                       style={{ display: "none" }}
                       accept=".txt"
+                      disabled
                       // onChange={(e) => submitProxy(e)}
                     />
 
-                    <label htmlFor="upload">
+                    <label htmlFor="upload" style={{ cursor: "not-allowed" }}>
                       <i className="bx bx-cloud-upload"></i>
                       Upload Proxy
                     </label>

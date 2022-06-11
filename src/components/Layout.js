@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Sidebar from "./Sidebar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
@@ -22,11 +22,11 @@ import { useGlobalContext } from "../context";
 import Notfound from "../pages/Notfound";
 
 const Layout = () => {
-  const { token } = useGlobalContext();
+  const { valid } = useGlobalContext();
   const themeReducer = useSelector((state) => state.ThemeReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const themeClass = localStorage.getItem("themeMode", "theme-mode-light");
 
     const colorClass = localStorage.getItem("colorMode", "theme-mode-light");
@@ -46,7 +46,7 @@ const Layout = () => {
   return (
     <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
       <Router>
-        {!token ? (
+        {!valid ? (
           <Login />
         ) : (
           <>
@@ -78,6 +78,10 @@ const Layout = () => {
         position="top-center"
         hideProgressBar
         autoClose={2000}
+        closeOnClick
+        pauseOnHover
+        draggable
+        progress="undefined"
       />
     </div>
   );

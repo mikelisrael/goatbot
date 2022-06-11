@@ -1,32 +1,61 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const AppContext = React.createContext();
 
-const getLocalStorage = () => {
-  let token = localStorage.getItem("GBTOKEN");
-  if (token) {
-    return token;
-  } else {
-    return null;
-  }
-};
-
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState({ name: "user", pass: "test" });
-  const [token, setToken] = useState(getLocalStorage());
+  const [token, setToken] = useState(Cookies.get("GBTOKEN"));
+  const [valid, setIsValid] = useState(
+    Cookies.get("GBVALID") === "false" || Cookies.get("GBVALID") === undefined
+      ? false
+      : true
+  );
 
-  const toastOptions = {
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    className: "myToasts",
-  };
+  // custom fetch function
+  const customFetch = useCallback(
+    async (url, options) => {
+      try {
+        const response = await (options
+          ? fetch(url, options)
+          : fetch(url, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }));
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+          Cookies.set("GBVALID", JSON.parse(false));
+
+          setIsValid(false);
+          // toast.warn("Session timeout", );
+        } else {
+          Cookies.set("GBVALID", JSON.parse(true));
+          setIsValid(true);
+          return data;
+        }
+      } catch (error) {
+        toast.warn("Check your connection");
+      }
+    },
+    [token]
+  );
 
   return (
     <AppContext.Provider
-      value={{ user, setUser, toastOptions, token, setToken }}
+      value={{
+        user,
+        setUser,
+        token,
+        setToken,
+        valid,
+        customFetch,
+      }}
     >
       {children}
     </AppContext.Provider>

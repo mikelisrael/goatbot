@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useGlobalContext } from "../context";
+import Cookies from "js-cookie";
 import "./styles/login.css";
 
 const Login = () => {
-  const { toastOptions, setToken } = useGlobalContext();
+  const { setToken, customFetch } = useGlobalContext();
   const [isError, setIsError] = useState(false);
 
   const {
@@ -15,27 +16,26 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await fetch("http://137.184.44.121/api/user/sign_in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
 
-      if (result.data) {
-        toast.success("login successful", toastOptions);
-        localStorage.setItem("GBTOKEN", result.data.token);
-        setToken(localStorage.getItem("GBTOKEN"));
-        // window.location.reload();
-      } else {
-        setIsError(true);
-        toast.error("incorrect email or password", toastOptions);
-      }
-    } catch (error) {
-      toast.warn("Check your connection", toastOptions);
+    const fetchData = await customFetch(
+      "http://137.184.44.121/api/user/sign_in",
+      options
+    );
+
+    if (fetchData && fetchData.data) {
+      toast.success("Login successful");
+      Cookies.set("GBTOKEN", fetchData.data.token);
+      setToken(Cookies.get("GBTOKEN"));
+    } else {
+      toast.error("incorrect email or password");
+      setIsError(true);
     }
   };
 
