@@ -77,7 +77,7 @@ const Layout = () => {
         theme="colored"
         position="top-center"
         hideProgressBar
-        autoClose={2000}
+        autoClose={3000}
         closeOnClick
         pauseOnHover
         draggable

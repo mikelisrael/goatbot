@@ -57,8 +57,8 @@ const Dashboard = () => {
 
     if (summary) {
       const { offers } = summary;
-      offers.map(({ name, sku, offered, accountEmail: email, size }) =>
-        data.push({ name, sku, offered, email, size })
+      offers.map(({ name, sku, price, size }) =>
+        data.push({ name, sku, price, size })
       );
       setOutstandingOffers(data);
     }
@@ -71,7 +71,7 @@ const Dashboard = () => {
       <td className="shoe-name">{item.name}</td>
       <td>{item.sku}</td>
       <td>{item.size}</td>
-      <td>${convertPriceToDollars(item.offered)}</td>
+      <td>${convertPriceToDollars(item.price)}</td>
     </tr>
   );
 

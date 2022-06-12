@@ -22,7 +22,7 @@ const CreateOffers = () => {
     setItemSelected({ ...itemSelected, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!selected) {
@@ -77,7 +77,7 @@ const CreateOffers = () => {
               <div className="form-control">
                 <input
                   type="text"
-                  placeholder="Enter slug e.g. air-jordan-2-retro-union-grey-fog"
+                  placeholder="e.g. air-jordan-2-retro-union-grey-fog"
                   name="slug"
                   value={itemSelected.slug}
                   onChange={handleChange}

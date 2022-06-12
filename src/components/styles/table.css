@@ -12,10 +12,6 @@ thead {
   background-color: var(--second-bg);
 }
 
-/* tr {
-  text-align: left;
-} */
-
 th {
   text-transform: capitalize;
 }
@@ -25,10 +21,6 @@ td {
   padding: 10px;
   text-align: center;
 }
-
-/* td:last-of-type {
-  text-align: center;
-} */
 
 tbody > tr:hover {
   background-color: var(--second-bg);

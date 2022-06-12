@@ -46,27 +46,36 @@
   pointer-events: none;
 }
 
-tr {
-  position: relative;
+tr:hover > .show-image {
+  transform: scale(1);
+  transition-property: transform;
+  transition-delay: 1s;
+  z-index: 10;
+}
+
+.expand-btn:hover ~ .show-image {
+  transform: scale(0);
+  transition-delay: 0s;
+}
+
+tr:hover > .show-image:hover {
+  transform: scale(0);
+  transition-delay: 0s;
+}
+
+td.expand-btn:hover > .image-container {
+  transform: scale(0);
 }
 
 .image-container {
   position: fixed;
-  width: 300px;
-  display: none;
-  /* transition: 0.5s; */
+  transform: scale(0);
+  width: 250px;
+  padding: 0;
+  margin: 0;
+  user-select: none;
 }
 
 .image-container img {
   width: 100%;
-}
-
-.show-image {
-  display: block;
-}
-
-@media (max-width: 400px) {
-  .show-image {
-    display: none;
-  }
 }

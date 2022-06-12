@@ -29,10 +29,13 @@ const AppProvider = ({ children }) => {
 
         const data = await response.json();
 
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 400) {
           Cookies.set("GBVALID", JSON.parse(false));
-
           setIsValid(false);
+
+          if (response.status === 400) {
+            toast.error("connection error");
+          }
           // toast.warn("Session timeout", );
         } else {
           Cookies.set("GBVALID", JSON.parse(true));

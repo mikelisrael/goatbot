@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   // latestOrders,
   outstandingOffersHead,
@@ -16,12 +16,13 @@ const OutstandingOffers = () => {
   const [outStandingOffers, setOutStandingOffers] = useState([]);
   const [selMultiple, setSelMultiple] = useState(false);
   const [selected, setSelected] = useState([]);
-  const { toastOptions, customFetch } = useGlobalContext();
+  const { customFetch } = useGlobalContext();
   const [sortAtoZ, setSortAtoZ] = useState("asc");
   const [sortLength, setSortLength] = useState("asc");
   const [showDialogue, setShowDialogue] = useState(false);
   const [previousSelected, setPreviousSelected] = useState(0);
   let currentSelected;
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 
   // fetch outstanding offers
   useEffect(() => {
@@ -68,29 +69,12 @@ const OutstandingOffers = () => {
     }
   };
 
-  // show image and remove image on timeout
-  const preview = useRef(null);
-  const [ID, setID] = useState(0);
-
-  const displayImage = (e) => {
-    setID(
-      setTimeout(() => {
-        if (!selMultiple) {
-          preview?.current.classList.add("show-image");
-        }
-      }, 500)
-    );
-
+  //follow image on mouse hover
+  const imageLocation = (e) => {
     var x = e.clientX;
     var y = e.clientY;
 
-    preview.current.style.left = x + "px";
-    preview.current.style.top = y + "px";
-  };
-
-  const removeImage = () => {
-    preview?.current.classList.remove("show-image");
-    clearTimeout(ID);
+    setCoordinates({ x, y });
   };
 
   // render table head and body
@@ -99,7 +83,6 @@ const OutstandingOffers = () => {
   const renderCustomBody = (item, index) => {
     const { title, sku: id, imageURL, size, price } = item;
 
-    // TODO: implement number of offers
     return (
       <tr
         key={index}
@@ -108,8 +91,7 @@ const OutstandingOffers = () => {
         }`}
         onMouseDown={(e) => ClickHighlight(e, item)}
         style={{ userSelect: "none" }}
-        onMouseOver={(e) => displayImage(e)}
-        onMouseLeave={() => removeImage()}
+        onMouseOver={imageLocation}
       >
         <td>{index + 1}</td>
         <td className="shoe-name">{title}</td>
@@ -135,7 +117,13 @@ const OutstandingOffers = () => {
           </td>
         )}
 
-        <td ref={preview} className="image-container">
+        <td
+          className={`image-container ${!selMultiple && "show-image"}`}
+          style={{
+            top: `${coordinates.y - 40}px`,
+            left: `${coordinates.x}px`,
+          }}
+        >
           <img src={imageURL} alt={title} />
         </td>
       </tr>
@@ -149,8 +137,7 @@ const OutstandingOffers = () => {
     toast.error(
       `${selected.length} ${
         selected.length > 1 ? "accounts" : "account"
-      } removed`,
-      toastOptions
+      } removed`
     );
     setSelected([]);
     setPreviousSelected(0);

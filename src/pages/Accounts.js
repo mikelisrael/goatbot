@@ -1,12 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Table from "../components/Table";
-import customersList from "../assets/JsonData/customers-list.json";
+// import customersList from "../assets/JsonData/customers-list.json";
 import { FaTrash } from "react-icons/fa/";
 import { v4 as uuidv4 } from "uuid";
 import { useGlobalContext } from "../context";
 import "./styles/accounts.css";
 import OutsideClickHandler from "react-outside-click-handler";
 import { toast } from "react-toastify";
+import { convertPriceToDollars } from "../utils/helperFunctions";
 
 const customerTableHead = [
   "s/n",
@@ -20,33 +21,45 @@ const customerTableHead = [
 
 const Accounts = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [accountList, setAccountList] = useState(customersList);
+  const [accountList, setAccountList] = useState([]);
   const [account, setAccount] = useState({ email: "", password: "" });
   const { user } = useGlobalContext();
   const [checked, setChecked] = useState(false);
   const modalRef = useRef(null);
   const modalInputRef = useRef(null);
+  const { customFetch } = useGlobalContext();
+
+  useEffect(() => {
+    const fetchOffers = async () => {
+      const data = await customFetch("http://137.184.44.121/api/account/list");
+
+      setAccountList(data.data);
+    };
+
+    fetchOffers();
+  }, [customFetch]);
 
   const renderHead = (item, index) => <th key={index}>{item}</th>;
 
-  const renderBody = (item, index) => (
-    <tr key={uuidv4()}>
-      <td>{index + 1}</td>
-      <td>{item.email}</td>
-      <td className="account-password">
-        {showPassword ? item.phone : "●●●●●●●●●"}
-      </td>
-      <td>{item.total_orders}</td>
-      <td>{item.total_orders}</td>
-      <td>{item.total_spend}</td>
-      <td>
-        <FaTrash
-          className="delete-btn"
-          onClick={() => removeAccount(item.id)}
-        />
-      </td>
-    </tr>
-  );
+  const renderBody = (item, index) => {
+    const { id, email, password, totalOffers, totalStorage, totalValue } = item;
+
+    return (
+      <tr key={uuidv4()}>
+        <td>{index + 1}</td>
+        <td>{email}</td>
+        <td className="account-password">
+          {showPassword ? password : "●●●●●●●●●"}
+        </td>
+        <td>{totalOffers}</td>
+        <td>{totalStorage}</td>
+        <td>${convertPriceToDollars(totalValue)}</td>
+        <td>
+          <FaTrash className="delete-btn" onClick={() => removeAccount(id)} />
+        </td>
+      </tr>
+    );
+  };
 
   const handleChange = (e) => {
     const name = e.target.name;
