@@ -2,8 +2,10 @@ import { useState } from "react";
 import AccountsDropdown from "../components/AccountsDropdown";
 import { toast } from "react-toastify";
 import "./styles/createoffers.css";
+import { useGlobalContext } from "../context";
 
 const CreateOffers = () => {
+  const { customFetch } = useGlobalContext();
   const [selected, setSelected] = useState("");
   const [itemQuantity, setItemQuantity] = useState({
     single: false,
@@ -13,6 +15,8 @@ const CreateOffers = () => {
     price: "",
     size: "",
     slug: "",
+    MHO: false,
+    RPM: false,
   });
 
   const handleChange = (e) => {
@@ -20,6 +24,51 @@ const CreateOffers = () => {
     const value = e.target.value;
 
     setItemSelected({ ...itemSelected, [name]: value });
+  };
+
+  const parse_raw_input = ({ size, price, slug, MHO, RPM }) => {
+    let req_body = [];
+
+    const parsed_sizes = size
+      ?.split(",")
+      ?.filter((each) => each?.trim() !== "")
+      ?.map((each) => parseFloat(each));
+
+    const parsed_prices = price
+      ?.split(",")
+      ?.filter((each) => each?.trim() !== "")
+      ?.map((each) => parseFloat(each));
+
+    if (parsed_sizes.length === parsed_prices.length) {
+      req_body.push(
+        parsed_sizes?.map((size, idx) => {
+          return {
+            slug: slug,
+            userId: selected.userId,
+            matchHighestOffer: MHO,
+            repeatPurchase: RPM,
+            size: size,
+            price: parsed_prices[idx],
+          };
+        })
+      );
+    } else if (parsed_sizes?.length >= 1 && parsed_prices?.length === 1) {
+      req_body.push(
+        parsed_sizes?.map((size) => {
+          return {
+            slug: slug,
+            userId: selected.userId,
+            matchHighestOffer: MHO,
+            repeatPurchase: RPM,
+            size: size,
+            price: parsed_prices[0],
+          };
+        })
+      );
+    } else {
+      toast.error("Invalid price/size list");
+    }
+    return req_body.flat();
   };
 
   const handleSubmit = async (e) => {
@@ -36,8 +85,38 @@ const CreateOffers = () => {
     } else if (!itemSelected.price) {
       toast.error("enter price");
     } else {
-      setItemSelected({ price: "", size: "", slug: "" });
-      toast.success("offer created");
+      const data = parse_raw_input(itemSelected);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+
+      const fetchData = await customFetch(
+        "http://137.184.44.121/api/offer/add",
+        options
+      );
+
+      console.log(fetchData);
+
+      if (fetchData.error) {
+        toast.error("Failed to create offer");
+      } else {
+        const failed = [];
+
+        fetchData.offers.map((offer) => offer.error && failed.push(offer.size));
+
+        if (failed.length > 0) {
+          toast.error(`Failed for sizes: ${failed.join(", ")}`, {
+            autoClose: false,
+          });
+        }
+
+        // setItemSelected({ price: "", size: "", slug: "" });
+        // toast.success("offer created");
+      }
     }
   };
 
@@ -84,7 +163,7 @@ const CreateOffers = () => {
                 />
                 <input
                   type="text"
-                  placeholder={`Input ${
+                  placeholder={`${
                     itemQuantity.multiple
                       ? "Sizes e.g. 7.5,8,9"
                       : "Size e.g. 7.5"
@@ -95,9 +174,11 @@ const CreateOffers = () => {
                 />
                 <input
                   type="text"
-                  placeholder={`Input ${
-                    itemQuantity.multiple
-                      ? "Prices e.g. 300,450,700"
+                  placeholder={` ${
+                    itemSelected.MHO
+                      ? "Enter positions"
+                      : itemQuantity.multiple
+                      ? "Prices e.g. 300,450,700 or Single Price"
                       : "Price e.g. 300"
                   }`}
                   name="price"
@@ -114,7 +195,15 @@ const CreateOffers = () => {
                         name="quantity"
                         style={{ display: "none" }}
                       />
-                      <label htmlFor="repeat">
+                      <label
+                        htmlFor="repeat"
+                        onClick={() =>
+                          setItemSelected({
+                            ...itemSelected,
+                            RPM: !itemSelected.RPM,
+                          })
+                        }
+                      >
                         <span></span>
                         Repeat purchasing mode
                       </label>
@@ -127,7 +216,15 @@ const CreateOffers = () => {
                         name="quantity"
                         style={{ display: "none" }}
                       />
-                      <label htmlFor="match">
+                      <label
+                        htmlFor="match"
+                        onClick={() =>
+                          setItemSelected({
+                            ...itemSelected,
+                            MHO: !itemSelected.MHO,
+                          })
+                        }
+                      >
                         <span></span>
                         Match highest offer
                       </label>

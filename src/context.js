@@ -1,6 +1,7 @@
 import React, { useState, useContext, useCallback } from "react";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 const AppContext = React.createContext();
 
@@ -12,6 +13,7 @@ const AppProvider = ({ children }) => {
       ? false
       : true
   );
+  const [validAccounts, setValidAccounts] = useState([]);
 
   // custom fetch function
   const customFetch = useCallback(
@@ -29,13 +31,10 @@ const AppProvider = ({ children }) => {
 
         const data = await response.json();
 
-        if (response.status === 401 || response.status === 400) {
+        if (response.status === 401) {
           Cookies.set("GBVALID", JSON.parse(false));
           setIsValid(false);
 
-          if (response.status === 400) {
-            toast.error("connection error");
-          }
           // toast.warn("Session timeout", );
         } else {
           Cookies.set("GBVALID", JSON.parse(true));
@@ -49,6 +48,18 @@ const AppProvider = ({ children }) => {
     [token]
   );
 
+  useEffect(() => {
+    const fetchValidAccounts = async () => {
+      const data = await customFetch(
+        "http://137.184.44.121/api/offer/valid-accounts"
+      );
+
+      setValidAccounts(data.items);
+    };
+
+    fetchValidAccounts();
+  }, [customFetch]);
+
   return (
     <AppContext.Provider
       value={{
@@ -58,6 +69,7 @@ const AppProvider = ({ children }) => {
         setToken,
         valid,
         customFetch,
+        validAccounts,
       }}
     >
       {children}
